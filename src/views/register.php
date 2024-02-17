@@ -10,36 +10,43 @@
     <link rel="shortcut icon" href="../../assets/images/fav.jpg">
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/css/login.css" />
 </head>
 
 <body class="bg-white">
     <div class="container-fluid vh-100 overflow-auto">
         <div class="row vh-100 ">
             <div class="col-lg-6 bg-gray p-5 text-center">
-                <h4 class="text-center fw-bolder fs-2">Register</h4>
-                <p class="mb-3 fs-7">Register Now and Fell the New Digital World</p>
-                <a href="register.php">
-                    <button class="btn fw-bold mb-5 btn-outline-success px-4 rounded-pill">Sign Up</button>
-                </a>
+                <h4 class="text-center fw-bolder fs-2">Login</h4>
+                <p class="mb-3 fs-7">Already gave an account ?</p>
+                <a href="login.php"><button class="btn fw-bold mb-5 btn-outline-success px-4 rounded-pill">log
+                        In</button></a>
                 <div class="img-cover p-4">
                     <img src="../../assets/images/loginbg.svg" alt="">
                 </div>
             </div>
             <div class="col-lg-6 p  vh-100">
                 <div class="row d-flex vh-100">
-                    <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
-                        <h4 class="text-center fw-bolder mb-4 fs-2">Login</h4>
+                    <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center mt-5">
+                        <h4 class="text-center fw-bolder mb-4 fs-2">Register</h4>
                         <div class="input-group mb-4">
                             <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-person"></i></span>
-                            <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" placeholder="Enter Username" aria-label="Username" aria-describedby="basic-addon1">
+                            <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" placeholder="Enter Full Name" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-4">
+                            <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-envelope"></i></span>
+                            <input type="text" class="form-control ps-2 border-start-0 fs-7 inbg form-control-lg mb-0" placeholder="Enter Email Address" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
                         <div class="input-group mb-4">
                             <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-lock"></i></span>
                             <input type="password" class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0" placeholder="Enter Password" aria-label="Username" aria-describedby="basic-addon1">
                         </div>
+                        <div class="input-group mb-4">
+                            <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i class="bi bi-lock"></i></span>
+                            <input type="password" class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0" placeholder="Confirm Password" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
 
-                        <button class="btn btn-lg fw-bold fs-7 btn-success  w-100">Login</button>
+                        <button class="btn btn-lg fw-bold fs-7 btn-success  w-100">Register</button>
 
                         <p class="text-center py-4 fw-bold fs-8">Or Sign in with social platforms</p>
 
