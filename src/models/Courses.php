@@ -14,8 +14,14 @@ class Course{
     public function runDML($sql){ 
         return $this->connection->query($sql);
     }
-
     
+    public function search($keyword) {
+        $sql = "SELECT * FROM course  WHERE CONCAT(title,category,instructor,price) LIKE '%$keyword%'";
+        $result = $this->runDML($sql);
+        $data=$result->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    } 
+
     public function getAllCourses(){
         $stmt="SELECT * FROM course";
         $result=$this->runDML($stmt); 
