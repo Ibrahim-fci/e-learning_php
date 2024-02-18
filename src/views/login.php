@@ -62,6 +62,15 @@ if (isset($_SESSION['user'])) {
                                     placeholder="Enter Password" aria-label="Username" aria-describedby="basic-addon1"
                                     name="password">
                             </div>
+                            <div class="mb-4 input-group">
+                                <div class="input-group-text  ">
+                                    <select class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0"
+                                        name="role">
+                                        <option value="student">Student</option>
+                                        <option value="teacher">Teacher</option>
+                                    </select>
+                                </div>
+                            </div>
 
                             <button class="btn btn-lg fw-bold fs-7 btn-success  w-100">Login</button>
 
