@@ -46,6 +46,20 @@ if (isset($_SESSION['user'])) {
                     <div class="row d-flex vh-100">
                         <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
                             <h4 class="text-center fw-bolder mb-4 fs-2">Login</h4>
+
+                            <?php
+                            session_start();
+                            if (isset($_SESSION['login_errors'])) {
+                                foreach ($_SESSION['login_errors'] as $error) {
+                                    echo "<p class='alert alert-danger'>$error</p>";
+                                }
+                            }
+
+                            ?>
+
+
+
+
                             <div class="input-group mb-4">
                                 <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i
                                         class="bi bi-person"></i></span>
