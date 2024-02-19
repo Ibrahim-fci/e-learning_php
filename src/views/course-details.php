@@ -1,4 +1,10 @@
-<?php?>
+<?php
+include_once '../models/Courses.php';
+$courses = new Course;
+$cid=$_GET["id"];
+$data = $courses->getoneCourses($cid);
+
+?>
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
@@ -8,9 +14,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Bootstrap 4 Landing Page Template For Online Courses">
-	<meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-	<link rel="shortcut icon" href="favicon.ico"> 
+	  
+	
 	
 
 	
@@ -19,20 +24,49 @@
     <link rel="stylesheet" href="../../assets/css/all.min.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/css/theme.css">
+	<link rel="stylesheet" href="../../assets/css/detailsstyle.css">
+	
 </head> 
 
 <body>    
+<header>
+        <div class="my-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="nav-items">
+                        <div class="menu-toggle">
+                            <div class="menu-hamburger"></div>
+                        </div>
+                        <div class="logo">
+                            <img src="../../assets/images/logo-01.png" />
+                        </div>
+                        <div class="menu-items">
+                            <div class="menu">
+                                <ul>
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="about-us.php">About Us</a></li>
+                                    <li><a href="services.php">Services</a></li>
+                                    <li><a href="login.php">Login</a></li>
+                                    <li><a href="contact-us.php">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-	<header class="header">
+	
 		<section class="hero-section">
 			<div class="hero-mask">
 			</div><!--//hero-mask-->
 			<div class="container text-center py-5">
 				<div class="single-col-max mx-auto">
-					<div class="hero-heading-upper pt-3 mb-3">Promote Your Online Course <br class="d-md-none">Like A Pro</div>
+					<div class="hero-heading-upper pt-5 mb-3">Promote Your Online Course <br class="d-md-none">Like A Pro</div>
+					
 					<h1 class="hero-heading mb-5">
-						<span class="brand mb-4 d-block"><span class="text-highlight pr-2">{</span><span class="name">DevCourse</span><span class="text-highlight pl-2">}</span></span>
-					    <span class="desc d-block">A Course Landing Page Template For Developers</span>
+						<span class="brand mb-4 d-block"><span class="text-highlight pr-2">{</span><span class="name"><?php echo $data[0]["title"];?></span><span class="text-highlight pl-2">}</span></span>
+					    <span class="desc d-block"><?php echo $data[0]["instructor"];?></span>
 				    </h1>
 					<div class="text-center mb-5">
 						<a href="#section-pricing" class="btn btn-primary btn-lg scrollto">Start Learning Now</a>
@@ -47,7 +81,7 @@
 							</div><!--//col-->
 							<div class="item col-4">
 								<div class="summary-desc mb-1"><i class="icon fas fa-clock me-2"></i>Duration</div>
-								<h4 class="summary-heading">72 <span class="desc">Hours</span></h4>
+								<h4 class="summary-heading"><?php echo $data[0]["duration"];?></h4>
 								
 							</div><!--//col-->
 							<div class="item col-4">
@@ -59,7 +93,8 @@
 					</div><!--//hero-summary-->
 				</div><!--//single-col-max-->
 			</div><!--//container-->
-			
+			<div class="hero-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('<?php echo $data[0]["imageurl"]?>'); background-size: cover; background-position: center;"></div>
+    </div>
 		</section><!--//hero-section-->
 	</header><!--//header-->
 	
@@ -72,7 +107,7 @@
 		        <div class="container py-5">
 			        <div class="section-col-max mx-auto">
 				        <h3 class="section-title mb-4">What Will You Learn</h3>
-			            <p class="mb-4">Your course overview goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae posuere nibh, at posuere enim. Sed vulputate ante congue, euismod odio a, gravida neque. Maecenas volutpat risus dolor.</p>
+			            <p class="mb-4"><?php echo $data[0]["description"];?></p>
 			            <div class="text-center mb-3">
 				            <ul class="column-list list-unstyled mx-auto d-inline-block">
 								<li><i class="theme-check-icon fas fa-check me-2"></i>Course highlight lorem ipsum</li>
@@ -113,7 +148,7 @@
 						            <div class="meta">Resources</div>
 					            </div><!--//item-->
 					            <div class="item col-6 col-lg-3 mb-3 mb-lg-0">
-						            <div class="data">72</div>
+						            <div class="data"><?php echo $data[0]["duration"];?></div>
 						            <div class="meta">Hours</div>
 					            </div><!--//item-->
 				            </div><!--//row-->
@@ -137,7 +172,7 @@
 										<div class="module-intro p-3">Module intro goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum elit non neque venenatis, ut mattis sapien lobortis. Integer eget turpis non ipsum convallis convallis vitae eu nunc.</div>
 									    <div class="module-sub-item p-3">
 										    <div class="row justify-content-between">
-											    <div class="col-9"><span class="theme-text-secondary me-2">1.1</span><a class="video-play-trigger" href="#" data-bs-toggle="modal" data-bs-target="#modal-video">Module Intro Video</a><span class="badge bg-primary ms-2">Preview</span></div>
+											    <div class="col-9"><span class="theme-text-secondary me-2">1.1</span><a class="video-play-trigger text-highlight" href="#" data-bs-toggle="modal" data-bs-target="#modal-video">Module Intro Video</a><span class="badge btn-primary ms-2">Preview</span></div>
 											    <div class="col-3 text-end extra-info">02:30</div>
 										    </div>
 									    </div><!--//module-sub-item-->
@@ -513,9 +548,9 @@
 		        </div><!--//container-->
 		    </div><!--//section-requirements-->
 		    
-		    <div id="section-tutor" class="section-tutor section pb-5">			    
+		    <div id="section-tutor" class="section-tutor   section pb-5">			    
 		        <div class="container">
-			        <div class="container-inner p-5 position-relative theme-bg-primary rounded">
+			        <div class="container-inner p-5 position-relative btn-primary rounded">
 				        <div class="section-bg-container"></div>
 				        <div class="row over-section-bg">
 					        <div class="col-12 col-lg-3">
@@ -647,8 +682,8 @@
 								</div><!--//source-->
 							</div><!--//item-->
 				        </div><!--//col-->
-				        <div class="col-12 col-md-6 col-lg-4 mb-4 align-items-center order-1 order-lg-0">
-					        <div class="review-item item-promo rounded p-5">
+				        <div class="col-12 col-md-6 col-lg-4 mb-4 align-items-center item-promo  order-1 order-lg-0">
+					        <div class=".item-promo rounded p-5 ">
 						        <h4 class="item-promo-heading mb-3">Join Over 20,000 Others Worldwide!</h4>
 						        <div class="item-promo-desc mb-3">Don’t just take our word for it. Look at what our learners are saying…</div>
 						        <a class="btn btn-ghost scrollto" href="#section-pricing">Join Now</a>
@@ -692,8 +727,8 @@
 			            <div class="row">
 				            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
 					            <div class="plan-item rounded">
-						            <div class="plan-header">
-							            <h4 class="plan-heading rounded-top p-3  theme-bg-primary">Free</h4>
+						            <div class="plan-header ">
+							            <h4 class="plan-heading rounded-top p-3  btn-primary">Free</h4>
 						            </div><!--//plan-header-->
 						            
 						            <div class="plan-details p-4">
@@ -712,19 +747,19 @@
 							            
 						            </div><!--//plan-content-->
 						            <div class="plan-cta text-center px-4">
-							            <a class="btn btn-ghost btn-block" href="https://themes.3rdwavemedia.com/bootstrap-templates/product/devcourse-bootstrap-4-course-landing-page-template/" target="_blank">Join Free</a>
+							            <a class="btn btn-ghost btn-block" href="">Join Free</a>
 							        </div>
 					            </div><!--//plan-item-->
 				            </div><!--//col-->
 				            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
 					            <div class="plan-item rounded">
 						            <div class="plan-header">
-							            <h4 class="plan-heading rounded-top p-3 theme-bg-primary">Premium</h4>
+							            <h4 class="plan-heading rounded-top p-3 btn-primary">Premium</h4>
 						            </div><!--//plan-header-->
 						            
 						            <div class="plan-details p-4">
 							            <div class="plan-desc text-center mb-4">
-								            <div class="plan-price">$99</div>
+								            <div class="plan-price">$<?php echo $data[0]["price"];?></div>
 								            <div class="plan-price-desc">Unlimited Access</div>
 							            </div>
 							            <div class="plan-content px-3">
@@ -862,30 +897,7 @@
 	        </div><!--//section-8-->
 	        
 	        
-	        <div class="section section-contact text-center">
-		        <div class="container">
-			        <div class="container-inner p-5 position-relative theme-bg-primary rounded text-white">
-				        <div class="section-bg-container"></div>
-				        <div class="section-col-max mx-auto over-section-bg">
-				            <h3 class="section-title mb-4 text-white">Get In Touch</h3>
-				            <div class="profile-holder mb-3"><img class="profile-image" src="assets/images/tutor-sm.jpg" alt="image"></div>
-					        <p class="intro">Want to hire me for your staff training or speaking at your conference? <br>You can email me at <a  href="#">hello@yourwebsite.com</a></p>
-		                    <h5 class="intro text-white">Know someone who may find the course useful?</h5>
-			                <div>Please help me spread the word! :)</div>
-			                <div class="text-center mt-4">
-					            <ul class="social-list list-unstyled mx-auto mb-0">
-									<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f fa-fw"></i></a></li> 
-									<li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-fw"></i></a></li>
-									<li class="list-inline-item"><a href="#"><i class="fab fa-linkedin-in fa-fw"></i></a></li>
-									<li class="list-inline-item"><a href="#"><i class="fas fa-envelope fa-fw"></i></a></li>
-								</ul><!--//social-list-->	
-				            </div>	
-				        </div><!--//section-col-max-->
-			        </div><!--//container-inner-->
-		        </div><!--//container-->
-	        </div><!--//section-->
-	    </div><!--//sections-block--> 
-	</div><!--//section-wrapper-->
+	      
 
 	<footer class="footer pb-5 text-center">
 		<div class="container">
@@ -916,11 +928,7 @@
 			</div><!--//modal-content-->
 		</div><!--//modal-dialog-->
 	</div><!--//modal-->
-	
-	<!-- Javascript -->   
-	<!-- <script src="assets/plugins/popper.min.js"></script>      
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
-	<script src="assets/js/main.js"></script>   -->
+
  <script src="../../assets/js/jquery-3.2.1.min.js"></script>
 <script src="../../assets/js/popper.min.js"></script>
 <script src="../../assets/js/bootstrap.min.js"></script>

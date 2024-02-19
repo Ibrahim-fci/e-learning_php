@@ -5,7 +5,7 @@ class Course{
     public function __construct()
     {
         try{
-            $this->connection=new PDO("mysql:host=localhost;dbname=e-learning;charset=utf8","root","");
+            $this->connection=new PDO("mysql:host=localhost;dbname=e_learning;charset=utf8","root","");
         }catch(Exception $e){
             $e->getMessage();
         }
@@ -18,6 +18,17 @@ class Course{
     
     public function getAllCourses(){
         $stmt="SELECT * FROM course";
+        $result=$this->runDML($stmt); 
+        $data=$result->fetchAll(PDO::FETCH_ASSOC);
+        if($data){
+            return $data;
+        }
+        else{
+            return false;
+        }
+    }
+    public function getoneCourses($id){
+        $stmt="SELECT * FROM course where id =$id";
         $result=$this->runDML($stmt); 
         $data=$result->fetchAll(PDO::FETCH_ASSOC);
         if($data){

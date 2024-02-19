@@ -2,6 +2,8 @@
 
 include_once '../models/Courses.php';
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,11 +38,14 @@ include_once '../models/Courses.php';
     <div class="col-md-4">
     <div class="card course-card">
         <div class="card-body">
+          <img src="<?php echo $course['imageurl']?>">
             <h5 class="card-title"><?php echo $course['title']; ?></h5>
-            <p class="card-text">Instructor: <?php echo $course['instructor']; ?></p>
-            <p class="card-text">Category: <?php echo $course['category']; ?></p>
+            
+            <!-- <p class="card-text">Instructor: <?php echo $course['']; ?></p> -->
+            <!-- <p class="card-text">Category: <?php echo $course['category']; ?></p> -->
             <p class="card-text"><?php echo $course['description']; ?></p>
             <p class="card-text">Price: <?php echo $course['price']; ?></p>
+            <a href="course-details.php?id=<?php echo $course['id']?>">more details</a>
         </div>
     </div>
     </div>
