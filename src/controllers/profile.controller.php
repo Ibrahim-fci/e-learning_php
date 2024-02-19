@@ -23,6 +23,7 @@ function update()
         if ($_SESSION['role'] == "student") {
             $student = new Student($first_name, $last_name, $gender, $address, $email, $password);
             $student->setImage($profileImage);
+            $student->phone = $phone;
             $result = $student->updateStudent($_SESSION['user_id']);
 
             if ($result) {
@@ -39,6 +40,8 @@ function update()
 
             $teacher = new Teacher($first_name, $last_name, $gender, $address, $email, $password);
             $teacher->setImage($profileImage);
+            $teacher->phone = $phone;
+
             $result = $teacher->updateTeacher($_SESSION['user_id']);
             echo $result;
 
