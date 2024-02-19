@@ -30,7 +30,8 @@
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="courses_list.php">Courses</a></li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Profile
                                         </a>
                                         <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
@@ -40,6 +41,8 @@
                                             <!-- <a class="dropdown-item" href="contact-us.php">Contact Us</a> -->
                                             <div class="dropdown-divider"></div>
                                             <?php
+                                            session_start();
+
                                             if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
 
                                                 echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";

@@ -74,6 +74,8 @@ $categoryResult = $category->getCategoryById($result['category_id']);
                                             <a class="dropdown-item" href="contact-us.php">Contact Us</a>
                                             <div class="dropdown-divider"></div>
                                             <?php
+                                            session_start();
+
                                             if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
 
                                                 echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
@@ -122,7 +124,7 @@ $categoryResult = $category->getCategoryById($result['category_id']);
                     <div class="abt-main d-flex">
                         <div class="abt-spirit">
                             <div class="image-box  ">
-                                <img src=<?php echo $result['imageurl'] ?> class="img-fluid w-100 h-100 ">
+                                <img src="<?php echo $result['imageurl'] ?>" class="img-fluid w-100 h-100 ">
                             </div>
                         </div>
                         <div class="abt-spirit">
@@ -140,7 +142,14 @@ $categoryResult = $category->getCategoryById($result['category_id']);
 
 
                                 <span>
-                                    <a href="#">Enroll Course</a>
+                                    <?php
+                                    session_start();
+                                    if (isset($_SESSION['role']) && $_SESSION['role'] == 'student') {
+
+                                        echo " <a href=''>Enroll Course</a>";
+                                    }
+
+                                    ?>
                                 </span>
                             </div>
                         </div>

@@ -91,6 +91,8 @@ $userRole = $_SESSION['role'];
                                             <div class="dropdown-divider"></div>
 
                                             <?php
+                                            session_start();
+
                                             if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
 
                                                 echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
@@ -177,7 +179,7 @@ $userRole = $_SESSION['role'];
                         echo "<p>$course[description]";
                         echo "</p>";
                         echo "</div>";
-                        if ($_SESSION['role'] != "student") {
+                        if ($_SESSION['role'] != "student" && $_SESSION['user_id'] == $course['teacher_id']) {
                             echo "<div class='row justify-content-end w-100 my-3'>";
                             echo "<button class='btn btn-primary mt-3 mr-1' data-toggle='modal' data-target='#updateModal' onclick='updateCourse( $course[id], \"$course[title]\", \"$course[description]\", \"$course[imageurl]\", \"$course[price]\", \"$course[duration]\", \"$course[category_id]\")'>update</button>";
                             echo "<button class='btn btn-danger mt-3'   data-toggle='modal' data-target='#deleteModal'  onclick='deleteCourse($course[id], \"$course[title]\")'>delete</button>";
