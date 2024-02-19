@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="../../assets/css/plugins/owl.carousel.css" />
     <link rel="stylesheet" href="../../assets/css/plugins/owl.carousel.min.css" />
     <link rel="stylesheet" href="../../assets/css/style.css" />
+
+    <style>
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #343a40;
+        /* Dark background color */
+        color: #edf4f8;
+        /* Dark text color */
+    }
+    </style>
 </head>
 
 <body>
@@ -28,10 +37,22 @@
                             <div class="menu">
                                 <ul>
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="about-us.php">About Us</a></li>
-                                    <li><a href="services.php">Services</a></li>
-                                    <li><a href="login.php">Login</a></li>
-                                    <li><a href="contact-us.php">Contact Us</a></li>
+                                    <li><a href="courses_list.php">Courses</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Profile
+                                        </a>
+                                        <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="services.php">Services</a>
+                                            <a class="dropdown-item" href="profile.php">Profile</a>
+                                            <a class="dropdown-item" href="about-us.php">About Us</a>
+                                            <a class="dropdown-item" href="contact-us.php">Contact Us</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="login.php">Login</a>
+
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

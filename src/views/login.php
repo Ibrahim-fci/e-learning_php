@@ -2,7 +2,6 @@
 
 // check if there is a session
 session_start();
-echo isset($_SESSION['user']);
 if (isset($_SESSION['user'])) {
     // Session exists
     header("Location: index.php");

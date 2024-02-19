@@ -13,9 +13,10 @@ class Person extends DbConnector
     public $address;
     public $email;
     public $password;
+    public $image;
 
 
-    public function __construct($first_name, $last_name, $gender, $address, $email = null, $password = null)
+    public function __construct($first_name, $last_name, $gender, $address, $email = null, $password = null, $image = null)
     {
         parent::__construct();
 
@@ -25,5 +26,6 @@ class Person extends DbConnector
         $this->address = $address;
         $this->email = $email;
         $this->password = $password;
+        $this->image = $image;
     }
 }
