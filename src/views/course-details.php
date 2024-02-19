@@ -3,6 +3,7 @@
 include_once __DIR__ . "/../models/Course.php";
 include_once __DIR__ . "/../models/Teacher.php";
 include_once __DIR__ . "/../models/Category.php";
+include_once __DIR__ . "/../models/Review.php";
 
 // Get query parameters
 $queryParams = $_GET;
@@ -21,6 +22,14 @@ $teacherResult = $teacher->getTeacherById($result['teacher_id']);
 
 $category = new Category();
 $categoryResult = $category->getCategoryById($result['category_id']);
+
+
+
+// get course reviews
+session_start();
+$review = new Review('', '', '',  $_SESSION['user_id']);
+$reviews = $review->getAllReviews($id);
+
 
 ?>
 
@@ -43,6 +52,16 @@ $categoryResult = $category->getCategoryById($result['category_id']);
     <link rel="stylesheet" href="../../assets/css/plugins/owl.carousel.css">
     <link rel="stylesheet" href="../../assets/css/plugins/owl.carousel.min.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+    /* Custom CSS for Profile Page */
+    .profile-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 0 auto;
+        display: block;
+    }
+    </style>
 </head>
 
 <body>
@@ -175,11 +194,14 @@ $categoryResult = $category->getCategoryById($result['category_id']);
                             <div class="rating"><i class="fas fa-star"></i></div>
                             <div class="rating"><i class="fas fa-star"></i></div>
                         </div>
+
+
+
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="<?php echo $teacherResult['image'] ?>" class="card-img-top"
-                                alt="Instructor Image">
+                            <img src="<?php echo $teacherResult['image'] ?>" class="card-img-top" alt="Instructor Image"
+                                style="height: 200px;">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <?php echo $teacherResult['first_name'] . ' ' . $teacherResult['last_name'] ?></h5>
@@ -188,6 +210,70 @@ $categoryResult = $category->getCategoryById($result['category_id']);
                         </div>
                     </div>
                 </div>
+                <div class="row justify-content-center text-center my-5">
+
+                    <h2 class="text-center text-secondary">Reviews</h2>
+                </div>
+                <div class='row w-100 justify-content-between'>
+
+                    <?php
+                    foreach ($reviews as $review) {
+
+                        // get student by student id 
+                        include_once __DIR__ . "/../models/Student.php";
+
+                        $student = new Student('', '', '', '', '', '');
+                        $studentResult = $student->getStudentById($review['student_id']);
+
+                        echo "
+
+                        <div class='rating w-50 bg-dark text-white p-2 my-3 rounded-3 col-md-5' style='border-radius: 20px'>
+                            <div class='d-flex align-items-center '>
+                                <img src='" . $studentResult['image'] . "' alt='Profile Image' class='profile-image mb-2' id='profileImage'><br />
+                            </div>
+                            <h5 class='card-title m-auto text-center mb-5'>" . $studentResult['first_name'] . ' ' . $studentResult['last_name'] . "</h5>
+
+                            <p class='card-text p-2'>";
+
+
+                        for ($i = 0; $i < $review['Rating']; $i++) {
+
+                            echo "<i class='fas fa-star'></i>";
+                        }
+
+                        echo "
+                            
+                            </p>
+                            <p class='card-text p-2'> " . $review['Comment'] . "</p>
+                        </div>
+                        ";
+                    }
+
+                    ?>
+                </div>
+
+
+                <div class="container mt-5">
+                    <h2>Course Review</h2>
+                    <form action="../controllers/review.controller.php" method="post">
+                        <input type="hidden" name="course_id" value="<?php echo $result['id'] ?>">
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating:</label>
+                            <input type="number" class="form-control" id="rating" name="rating" min="1" max="5"
+                                step="0.5" required name="rating">
+                            <div class="invalid-feedback">Please provide a rating between 1 and 5.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment:</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="4" required
+                                name="comment"></textarea>
+                            <div class="invalid-feedback">Please provide a comment.</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+
             </div>
         </section>
 
