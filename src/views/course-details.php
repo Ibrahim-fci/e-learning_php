@@ -63,7 +63,8 @@ $categoryResult = $category->getCategoryById($result['category_id']);
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="courses_list.php">Courses</a></li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Profile
                                         </a>
                                         <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
@@ -168,7 +169,8 @@ $categoryResult = $category->getCategoryById($result['category_id']);
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <img src="<?php echo $teacherResult['image'] ?>" class="card-img-top" alt="Instructor Image">
+                            <img src="<?php echo $teacherResult['image'] ?>" class="card-img-top"
+                                alt="Instructor Image">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <?php echo $teacherResult['first_name'] . ' ' . $teacherResult['last_name'] ?></h5>
@@ -254,7 +256,7 @@ $categoryResult = $category->getCategoryById($result['category_id']);
             <div class="row">
                 <div class="col-12">
                     <div class="last-card">
-                        <p>© 2020 All Rights Reserved by<a href="https://www.smarteyeapps.com">SMARTEYEAPPS</a></p>
+                        <p>© 2020 All Rights Reserved by</p>
                     </div>
                 </div>
             </div>

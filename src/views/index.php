@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="../../assets/css/style.css" />
 
     <style>
-        .dropdown-menu .dropdown-item:hover {
-            background-color: #343a40;
-            /* Dark background color */
-            color: #edf4f8;
-            /* Dark text color */
-        }
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #343a40;
+        /* Dark background color */
+        color: #edf4f8;
+        /* Dark text color */
+    }
     </style>
 </head>
 
@@ -39,14 +39,15 @@
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="courses_list.php">Courses</a></li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Profile
                                         </a>
                                         <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="services.php">Services</a>
                                             <a class="dropdown-item" href="profile.php">Profile</a>
                                             <a class="dropdown-item" href="about-us.php">About Us</a>
-                                            <a class="dropdown-item" href="contact-us.php">Contact Us</a>
+                                            <!-- <a class="dropdown-item" href="contact-us.php">Contact Us</a> -->
                                             <div class="dropdown-divider"></div>
                                             <?php
                                             if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
@@ -73,21 +74,27 @@
         <section class="slider">
             <div class="shap"></div>
             <div class="shap-01">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="75px" height="75px" viewBox="0 0 75 75" enable-background="new 0 0 75 75" xml:space="preserve">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="75px" height="75px" viewBox="0 0 75 75" enable-background="new 0 0 75 75"
+                    xml:space="preserve">
                     <g id="Layer_1"></g>
                     <g id="Layer_2">
-                        <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="5.0576" y1="37.5" x2="69.9424" y2="37.5">
+                        <linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="5.0576" y1="37.5" x2="69.9424"
+                            y2="37.5">
                             <stop offset="0.35" style="stop-color: #edf4f8" />
                             <stop offset="0.439" style="stop-color: #f6fafc" />
                             <stop offset="0.5874" style="stop-color: #fdfefe" />
                             <stop offset="1" style="stop-color: #ffffff" />
                         </linearGradient>
-                        <polygon fill="url(#SVGID_1_)" points="21.279,65.596 5.058,37.5 21.279,9.404 53.721,9.404 69.942,37.5 53.721,65.596 	" />
+                        <polygon fill="url(#SVGID_1_)"
+                            points="21.279,65.596 5.058,37.5 21.279,9.404 53.721,9.404 69.942,37.5 53.721,65.596 	" />
                     </g>
                 </svg>
             </div>
             <div class="shap-02">
-                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="200px" viewBox="0 0 30 200" style="enable-background: new 0 0 30 200" xml:space="preserve">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="200px"
+                    viewBox="0 0 30 200" style="enable-background: new 0 0 30 200" xml:space="preserve">
                     <path style="fill: #ffffff" d="M20.666,176.646C20.666,186.782,18.129,195,15,195l0,0c-3.129,0-5.667-8.218-5.667-18.354V23.352
                 	C9.333,13.217,11.871,5,15,5l0,0c3.129,0,5.666,8.217,5.666,18.352V176.646z" />
                 </svg>
@@ -306,59 +313,6 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-camera"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>PHOTOGRAPHY</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Facilis molestias excepturi fugit, similique laborum
-                                        necessitatibus?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-dumbbell"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>HEALTH FITNESS</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Facilis molestias excepturi fugit, similique laborum
-                                        necessitatibus?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-life-ring"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>LIFESTYLE</h3>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Facilis molestias excepturi fugit, similique laborum
-                                        necessitatibus?
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -813,7 +767,7 @@
                 <div class="col-12">
                     <div class="last-card">
                         <p>
-                            © 2020 All Rights Reserved by<a href="https://www.smarteyeapps.com">SMARTEYEAPPS</a>
+                            © 2020 All Rights Reserved by
                         </p>
                     </div>
                 </div>

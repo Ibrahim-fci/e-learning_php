@@ -37,7 +37,7 @@
                                             <a class="dropdown-item" href="services.php">Services</a>
                                             <a class="dropdown-item" href="profile.php">Profile</a>
                                             <a class="dropdown-item" href="about-us.php">About Us</a>
-                                            <a class="dropdown-item" href="contact-us.php">Contact Us</a>
+                                            <!-- <a class="dropdown-item" href="contact-us.php">Contact Us</a> -->
                                             <div class="dropdown-divider"></div>
                                             <?php
                                             if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
@@ -358,7 +358,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="last-card">
-                        <p>© 2020 All Rights Reserved by<a href="https://www.smarteyeapps.com">SMARTEYEAPPS</a></p>
+                        <p>© 2020 All Rights Reserved by</p>
                     </div>
                 </div>
             </div>
