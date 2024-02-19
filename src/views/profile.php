@@ -40,14 +40,14 @@ if ($_SESSION['role'] == "student") {
     <link rel="stylesheet" href="../../assets/css/plugins/owl.carousel.min.css" />
     <link rel="stylesheet" href="../../assets/css/style.css" />
     <style>
-        /* Custom CSS for Profile Page */
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            margin: 0 auto;
-            display: block;
-        }
+    /* Custom CSS for Profile Page */
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin: 0 auto;
+        display: block;
+    }
     </style>
 </head>
 
@@ -67,10 +67,22 @@ if ($_SESSION['role'] == "student") {
                             <div class="menu">
                                 <ul>
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="about-us.php">About Us</a></li>
-                                    <li><a href="services.php">Services</a></li>
-                                    <li><a href="blog.php">Blog</a></li>
-                                    <li><a href="contact-us.php">Contact Us</a></li>
+                                    <li><a href="courses_list.php">Courses</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Profile
+                                        </a>
+                                        <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="services.php">Services</a>
+                                            <a class="dropdown-item" href="profile.php">Profile</a>
+                                            <a class="dropdown-item" href="about-us.php">About Us</a>
+                                            <a class="dropdown-item" href="contact-us.php">Contact Us</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="login.php">Login</a>
+
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -86,7 +98,8 @@ if ($_SESSION['role'] == "student") {
             <form action="../controllers/profile.controller.php" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-6 offset-md-3 text-center">
-                        <img src="<?php echo $data['image']; ?>" alt="Profile Image" class="profile-image" id="profileImage">
+                        <img src="<?php echo $data['image']; ?>" alt="Profile Image" class="profile-image"
+                            id="profileImage">
                         <label for="fileInput" class="btn btn-primary mt-3">Change</label>
                         <input type="file" id="fileInput" style="display:none" name="image" onchange="loadFile(event)">
                     </div>
@@ -111,27 +124,32 @@ if ($_SESSION['role'] == "student") {
 
                             <div class="form-group col-md-6">
                                 <label for="name">First Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your First Name" name="first_name" value="<?= $data['first_name'] ?>">
+                                <input type="text" class="form-control" id="name" placeholder="Enter your First Name"
+                                    name="first_name" value="<?= $data['first_name'] ?>">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="name">Last Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter your Last Name" name="last_name" value="<?= $data['last_name'] ?>">
+                                <input type="text" class="form-control" id="name" placeholder="Enter your Last Name"
+                                    name="last_name" value="<?= $data['last_name'] ?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Enter your email" name="email" value="<?= $data['email'] ?>" disabled>
+                            <input type="text" class="form-control" id="email" placeholder="Enter your email"
+                                name="email" value="<?= $data['email'] ?>" disabled>
                         </div>
 
                         <div class="row justify-content-between">
 
                             <div class="form-group col-md-6">
                                 <label for="phone">Phone</label>
-                                <input type="text" class="form-control" id="phone" placeholder="Enter your phone number" name="phone" value="<?= $data['phone'] ?>">
+                                <input type="text" class="form-control" id="phone" placeholder="Enter your phone number"
+                                    name="phone" value="<?= $data['phone'] ?>">
                             </div>
                             <div class="form-group  col-md-6">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="Enter your password" name="password" value="<?= $data['password'] ?>">
+                                <input type="password" class="form-control" id="password"
+                                    placeholder="Enter your password" name="password" value="<?= $data['password'] ?>">
                             </div>
                         </div>
                         <div class="row justify-content-between">
@@ -145,7 +163,8 @@ if ($_SESSION['role'] == "student") {
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="country">Country</label>
-                                <select class="form-control" id="country" name="country" value="<?= $data['country'] ?>">
+                                <select class="form-control" id="country" name="country"
+                                    value="<?= $data['country'] ?>">
                                     <option value="egypt">Egypt</option>
                                     <option value="canada">Canada</option>
                                     <option value="uk">UK</option>
