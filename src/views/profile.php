@@ -101,7 +101,8 @@ if ($_SESSION['role'] == "student") {
                         <img src="<?php echo $data['image']; ?>" alt="Profile Image" class="profile-image"
                             id="profileImage">
                         <label for="fileInput" class="btn btn-primary mt-3">Change</label>
-                        <input type="file" id="fileInput" style="display:none" name="image" onchange="loadFile(event)">
+                        <input type="file" id="fileInput" style="display:none" name="image"
+                            onchange="loadFile(event, 'profileImage')">
                     </div>
                 </div>
 

@@ -1,3 +1,22 @@
+<?php
+include_once __DIR__ . "/../models/Category.php";
+include_once __DIR__ . "/../models/Course.php";
+
+// get all categories
+$category = new Category();
+$categories = $category->getAllCategories();
+
+// get all courses
+$course = new Course('', '', '', '', '', '', '');
+$courses = $course->getAllCourses();
+
+session_start();
+$userRole = $_SESSION['role'];
+
+?>
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -10,6 +29,37 @@
     <link rel="stylesheet" href="../../assets/css/plugins/owl.carousel.css">
     <link rel="stylesheet" href="../../assets/css/plugins/owl.carousel.min.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
+
+    <style>
+        /* Adjust styles as needed */
+        .search-input {
+            width: 100%;
+            height: 50px;
+            border-radius: 20px;
+        }
+
+        .plus-icon {
+            margin-left: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            color: #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #007bff;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            transition: all 0.3s ease;
+
+
+        }
+    </style>
 </head>
 
 <body>
@@ -30,8 +80,7 @@
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="courses_list.php">Courses</a></li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Profile
                                         </a>
                                         <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
@@ -60,10 +109,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="heading-wrapper">
-                            <h3>Services</h3>
+                            <h3>Courses</h3>
                             <ol>
                                 <li>Hmoe<i class="far fa-angle-double-right"></i></li>
-                                <li>Services</li>
+                                <li>Courses</li>
                             </ol>
                         </div>
                     </div>
@@ -74,14 +123,61 @@
         <!-- ============bg-se-02  Section  Start============ -->
 
         <section class="bg-se-02">
+            <?php
+
+            if ($_SESSION['role'] != "student") {
+                echo " <div class='plus-icon' style='z-index: 1999;' data-toggle='modal' data-target='#imageModal'>";
+                echo "<i class='fas fa-plus-circle'></i>";
+                echo "</div>";
+            } else {
+            }
+
+            ?>
+
             <div class="container">
+                <div class="input-group mb-5">
+                    <input type="text" class="form-control search-input" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="heading">
-                        <h2>POPULAR CATEGORY</h2>
+                        <h2>POPULAR Courses</h2>
                     </div>
                 </div>
 
                 <div class="row">
+
+                    <?php
+
+                    foreach ($courses as $course) {
+
+                        echo "<div class='col-lg-4 col-md-4 col-sm-6 col-12' >";
+                        echo "<div class='main-wrapper p-0' style='min-height: 240px'>";
+                        echo "<div class='content text-center p-0'>";
+                        echo "<div class=' w-100' >";
+                        echo "<img src='$course[imageurl]' class='card-img-top w-100' alt='...'' style='height: 200px'>";
+                        echo "</div>";
+                        echo "<div class='sentence'>";
+                        echo "<h3>$course[title]</h3>";
+                        echo "<p>$course[description]";
+                        echo "</p>";
+                        echo "</div>";
+                        if ($_SESSION['role'] != "student") {
+                            echo "<div class='row justify-content-end w-100 my-3'>";
+                            echo "<button class='btn btn-primary mt-3 mr-1' data-toggle='modal' data-target='#updateModal' onclick='updateCourse( $course[id], \"$course[title]\", \"$course[description]\", \"$course[imageurl]\", \"$course[price]\", \"$course[duration]\", \"$course[category_id]\")'>update</button>";
+                            echo "<button class='btn btn-danger mt-3'>delete</button>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+
+                    ?>
                     <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                         <div class="main-wrapper">
                             <div class="content text-center">
@@ -94,148 +190,157 @@
                                         excepturi fugit, similique laborum
                                         necessitatibus?</p>
                                 </div>
+
+                                <div class="row justify-content-center w-100">
+                                    <button class="btn btn-primary mt-3 mr-3">update</button>
+                                    <button class="btn btn-danger mt-3">delete</button>
+                                </div>
                             </div>
+
+
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-business-time"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>BUSINESS</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-calculator-alt"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>ACCOUNTING</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-database"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>SOFTWARE</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-palette"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>ARTS & DESIGN</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-shopping-cart"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>MARKETING</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-camera"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>PHOTOGRAPHY</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-dumbbell"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>HEALTH FITNESS</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-life-ring"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>LIFESTYLE</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
+
+
+        <!-- Add Modal -->
+        <!-- Modal -->
+        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">Add Course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../controllers/courses.controller.php" method="POST" enctype="multipart/form-data">
+                            <!-- Image -->
+                            <div class=" ">
+                                <img src="https://learning.zelleducation.com/theme/images/default.jpg" class="img-fluid mb-1 w-100" alt="Sample Image" style="height: 300px;" id="outputImage">
+                                <label for="fileInput" class="btn btn-primary w-100 mb-3">Change</label>
+                                <input type="file" id="fileInput" style="display:none" name="image" onchange="loadFile(event,'outputImage')">
+                            </div>
+
+                            <!-- Form -->
+
+                            <div class="form-group ">
+                                <input type="text" class="form-control" placeholder="Course Title" name="title">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="number" class="form-control" placeholder="Price" name="price">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" placeholder="duration" name="duration">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <select class="form-control" name="category">
+                                        <?php
+                                        foreach ($categories as $c) {
+                                            echo "<option value='{$c['id']}'>{$c['title']}</option>";
+                                        }
+                                        ?>
+
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <select class="form-control">
+                                        <option>Select 2</option>
+                                        <option>Option 1</option>
+                                        <option>Option 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" placeholder="Description" style="resize: none;" name="description"></textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- UPDATE Modal -->
+        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">Update Course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="../controllers/courses.controller.php" method="POST" enctype="multipart/form-data">
+                            <!-- Image -->
+                            <input type="hidden" name="id" id="update_id">
+                            <div class=" ">
+                                <img src="https://learning.zelleducation.com/theme/images/default.jpg" class="img-fluid mb-1 w-100" alt="Sample Image" style="height: 300px;" id="update_image">
+                                <label for="fileInput" class="btn btn-primary w-100 mb-3">Change</label>
+                                <input type="file" id="fileInput" style="display:none" name="update_image" onchange="loadFile(event,'update_image')">
+                            </div>
+
+                            <!-- Form -->
+
+                            <div class="form-group ">
+                                <input type="text" class="form-control" placeholder="Course Title" name="title" id="update_title">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <input type="number" class="form-control" placeholder="Price" name="price" id="update_price">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" placeholder="duration" name="duration" id="update_duration">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <select class="form-control" name="category" id="update_category">
+                                        <?php
+                                        foreach ($categories as $c) {
+                                            echo "<option value='{$c['id']}'>{$c['title']}</option>";
+                                        }
+                                        ?>
+
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <select class="form-control">
+                                        <option>Select 2</option>
+                                        <option>Option 1</option>
+                                        <option>Option 2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" rows="5" placeholder="Description" style="resize: none;" name="description" id="update_description"></textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
 
 
 
@@ -320,5 +425,7 @@
 <script src="../../assets/js/plugins/owl.carousel.js"></script>
 <script src="../../assets/js/plugins/owl.carousel.min.js"></script>
 <script src="../../assets/js/script.js"></script>
+<script src="../../assets/js/previewImage.js"></script>
+
 
 </html>
