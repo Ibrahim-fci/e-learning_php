@@ -31,34 +31,34 @@ $userRole = $_SESSION['role'];
     <link rel="stylesheet" href="../../assets/css/style.css">
 
     <style>
-        /* Adjust styles as needed */
-        .search-input {
-            width: 100%;
-            height: 50px;
-            border-radius: 20px;
-        }
+    /* Adjust styles as needed */
+    .search-input {
+        width: 100%;
+        height: 50px;
+        border-radius: 20px;
+    }
 
-        .plus-icon {
-            margin-left: 10px;
-            margin-right: 10px;
-            cursor: pointer;
-            font-size: 20px;
-            color: #fff;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #007bff;
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 0;
-            transition: all 0.3s ease;
+    .plus-icon {
+        margin-left: 10px;
+        margin-right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #fff;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #007bff;
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        transition: all 0.3s ease;
 
 
-        }
+    }
     </style>
 </head>
 
@@ -80,7 +80,8 @@ $userRole = $_SESSION['role'];
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="courses_list.php">Courses</a></li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Profile
                                         </a>
                                         <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
@@ -168,7 +169,9 @@ $userRole = $_SESSION['role'];
                         echo "<div class='main-wrapper p-0' style='min-height: 240px'>";
                         echo "<div class='content text-center p-0'>";
                         echo "<div class=' w-100' >";
+                        echo "<a href='course-details.php?course_id=$course[id]'>";
                         echo "<img src='$course[imageurl]' class='card-img-top w-100' alt='...'' style='height: 200px'>";
+                        echo "</a>";
                         echo "</div>";
                         echo "<div class='sentence'>";
                         echo "<h3>$course[title]</h3>";
@@ -196,7 +199,8 @@ $userRole = $_SESSION['role'];
 
         <!-- Add Modal -->
         <!-- Modal -->
-        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -206,12 +210,16 @@ $userRole = $_SESSION['role'];
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="../controllers/courses.controller.php" method="POST" enctype="multipart/form-data">
+                        <form action="../controllers/courses.controller.php" method="POST"
+                            enctype="multipart/form-data">
                             <!-- Image -->
                             <div class=" ">
-                                <img src="https://learning.zelleducation.com/theme/images/default.jpg" class="img-fluid mb-1 w-100" alt="Sample Image" style="height: 300px;" id="outputImage">
+                                <img src="https://learning.zelleducation.com/theme/images/default.jpg"
+                                    class="img-fluid mb-1 w-100" alt="Sample Image" style="height: 300px;"
+                                    id="outputImage">
                                 <label for="fileInput" class="btn btn-primary w-100 mb-3">Change</label>
-                                <input type="file" id="fileInput" style="display:none" name="image" onchange="loadFile(event,'outputImage')">
+                                <input type="file" id="fileInput" style="display:none" name="image"
+                                    onchange="loadFile(event,'outputImage')">
                             </div>
 
                             <!-- Form -->
@@ -248,7 +256,8 @@ $userRole = $_SESSION['role'];
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" placeholder="Description" style="resize: none;" name="description"></textarea>
+                                <textarea class="form-control" rows="5" placeholder="Description" style="resize: none;"
+                                    name="description"></textarea>
                             </div>
                     </div>
                     <div class="modal-footer">
@@ -264,7 +273,8 @@ $userRole = $_SESSION['role'];
 
 
         <!-- UPDATE Modal -->
-        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -274,27 +284,34 @@ $userRole = $_SESSION['role'];
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="../controllers/updateCourse.controller.php" method="POST" enctype="multipart/form-data">
+                        <form action="../controllers/updateCourse.controller.php" method="POST"
+                            enctype="multipart/form-data">
                             <!-- Image -->
                             <input type="hidden" name="id" id="update_id">
                             <div class=" ">
-                                <img src="https://learning.zelleducation.com/theme/images/default.jpg" class="img-fluid mb-1 w-100" alt="Sample Image" style="height: 300px;" id="update_image">
+                                <img src="https://learning.zelleducation.com/theme/images/default.jpg"
+                                    class="img-fluid mb-1 w-100" alt="Sample Image" style="height: 300px;"
+                                    id="update_image">
                                 <label for="fileInput" class="btn btn-primary w-100 mb-3">Change</label>
-                                <input type="file" id="fileInput" style="display:none" name="update_image" onchange="loadFile(event,'update_image')">
+                                <input type="file" id="fileInput" style="display:none" name="update_image"
+                                    onchange="loadFile(event,'update_image')">
                             </div>
 
                             <!-- Form -->
 
                             <div class="form-group ">
-                                <input type="text" class="form-control" placeholder="Course Title" name="title" id="update_title">
+                                <input type="text" class="form-control" placeholder="Course Title" name="title"
+                                    id="update_title">
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <input type="number" class="form-control" placeholder="Price" name="price" id="update_price">
+                                    <input type="number" class="form-control" placeholder="Price" name="price"
+                                        id="update_price">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" placeholder="duration" name="duration" id="update_duration">
+                                    <input type="text" class="form-control" placeholder="duration" name="duration"
+                                        id="update_duration">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -317,7 +334,8 @@ $userRole = $_SESSION['role'];
                                 </div>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" rows="5" placeholder="Description" style="resize: none;" name="description" id="update_description"></textarea>
+                                <textarea class="form-control" rows="5" placeholder="Description" style="resize: none;"
+                                    name="description" id="update_description"></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary">Update</button>
@@ -333,7 +351,8 @@ $userRole = $_SESSION['role'];
 
 
         <!-- Delete Modal -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -343,11 +362,13 @@ $userRole = $_SESSION['role'];
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="../controllers/deleteCourse.controller.php" method="POST" enctype="multipart/form-data">
+                        <form action="../controllers/deleteCourse.controller.php" method="POST"
+                            enctype="multipart/form-data">
                             <!-- Image -->
                             <input type="hidden" name="delete_id" id="delete_id">
                             <div>
-                                <p>Are you sure you want to delete Course With Title <span class="text-danger" id="delete_title"></span></p>
+                                <p>Are you sure you want to delete Course With Title <span class="text-danger"
+                                        id="delete_title"></span></p>
                             </div>
 
                             <div class="modal-footer">

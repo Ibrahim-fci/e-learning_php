@@ -18,4 +18,12 @@ class Category extends DbConnector
         $result = $this->runDML($sql);
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+    public function getCategoryById($id)
+    {
+        $sql = "SELECT * FROM Category WHERE id = '$id'";
+        $result = $this->runDML($sql);
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
 }

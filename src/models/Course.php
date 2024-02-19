@@ -53,4 +53,12 @@ class Course extends DbConnector
         $this->runDml($sql);
         return true;
     }
+
+
+    public function getCourseById($id)
+    {
+        $sql = "SELECT * FROM Course WHERE id = '$id'";
+        $result = $this->runDml($sql);
+        return $result->fetch(PDO::FETCH_ASSOC);
+    }
 }
