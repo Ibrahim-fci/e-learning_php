@@ -29,3 +29,9 @@ function updateCourse(
 }
 
 console.log("loaded");
+
+function deleteCourse(id, title) {
+  console.log(id);
+  document.getElementById("delete_id").value = id;
+  document.getElementById("delete_title").innerHTML = title;
+}

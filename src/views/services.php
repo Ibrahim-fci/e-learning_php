@@ -89,7 +89,16 @@ $userRole = $_SESSION['role'];
                                             <a class="dropdown-item" href="about-us.php">About Us</a>
                                             <a class="dropdown-item" href="contact-us.php">Contact Us</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="login.php">Login</a>
+
+                                            <?php
+                                            if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
+
+                                                echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
+                                            } else {
+                                                echo "<a class='dropdown-item' href='login.php'>Logout</a>";
+                                            }
+
+                                            ?>
 
                                         </div>
                                     </li>
@@ -169,7 +178,7 @@ $userRole = $_SESSION['role'];
                         if ($_SESSION['role'] != "student") {
                             echo "<div class='row justify-content-end w-100 my-3'>";
                             echo "<button class='btn btn-primary mt-3 mr-1' data-toggle='modal' data-target='#updateModal' onclick='updateCourse( $course[id], \"$course[title]\", \"$course[description]\", \"$course[imageurl]\", \"$course[price]\", \"$course[duration]\", \"$course[category_id]\")'>update</button>";
-                            echo "<button class='btn btn-danger mt-3'>delete</button>";
+                            echo "<button class='btn btn-danger mt-3'   data-toggle='modal' data-target='#deleteModal'  onclick='deleteCourse($course[id], \"$course[title]\")'>delete</button>";
                             echo "</div>";
                         }
                         echo "</div>";
@@ -178,28 +187,7 @@ $userRole = $_SESSION['role'];
                     }
 
                     ?>
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-code"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>DEVELOPMENT</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique laborum
-                                        necessitatibus?</p>
-                                </div>
 
-                                <div class="row justify-content-center w-100">
-                                    <button class="btn btn-primary mt-3 mr-3">update</button>
-                                    <button class="btn btn-danger mt-3">delete</button>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
 
                 </div>
             </div>
@@ -286,7 +274,7 @@ $userRole = $_SESSION['role'];
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="../controllers/courses.controller.php" method="POST" enctype="multipart/form-data">
+                        <form action="../controllers/updateCourse.controller.php" method="POST" enctype="multipart/form-data">
                             <!-- Image -->
                             <input type="hidden" name="id" id="update_id">
                             <div class=" ">
@@ -331,12 +319,43 @@ $userRole = $_SESSION['role'];
                             <div class="form-group">
                                 <textarea class="form-control" rows="5" placeholder="Description" style="resize: none;" name="description" id="update_description"></textarea>
                             </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Add</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Delete Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="imageModalLabel">Delete Course</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    </form>
+                    <div class="modal-body">
+                        <form action="../controllers/deleteCourse.controller.php" method="POST" enctype="multipart/form-data">
+                            <!-- Image -->
+                            <input type="hidden" name="delete_id" id="delete_id">
+                            <div>
+                                <p>Are you sure you want to delete Course With Title <span class="text-danger" id="delete_title"></span></p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
             </div>

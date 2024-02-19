@@ -6,8 +6,6 @@ function addCourse()
 
     try {
 
-
-
         // @desc Get form data
         $title = $_POST['title'] ?? '';
         $price = $_POST['price'] ?? '';

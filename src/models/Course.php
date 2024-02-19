@@ -36,13 +36,21 @@ class Course extends DbConnector
 
     public function updateCourse($id, $title, $description, $imageurl, $price, $duration, $category_id)
     {
-        if (isset($imageurl)) {
+        if (isset($imageurl) && $imageurl != '') {
             $sql = "UPDATE Course SET title = '$title', description = '$description', price = '$price', duration = '$duration', category_id = '$category_id', imageurl = '$imageurl' WHERE id = '$id'";
             $this->runDml($sql);
         } else {
             $sql = "UPDATE Course SET title = '$title', description = '$description', price = '$price', duration = '$duration', category_id = '$category_id' WHERE id = '$id'";
             $this->runDml($sql);
         }
+        return true;
+    }
+
+
+    public function deleteCourse($id)
+    {
+        $sql = "DELETE FROM Course WHERE id = '$id'";
+        $this->runDml($sql);
         return true;
     }
 }
