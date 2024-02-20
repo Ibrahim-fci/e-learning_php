@@ -72,6 +72,11 @@ class Teacher extends Person
             $this->runDml($sql);
         }
 
+        if (isset($this->phone)) {
+            $sql = "UPDATE Teacher SET phone = '" . $this->phone . "' WHERE teacher_id = '" . $id . "';";
+            $this->runDml($sql);
+        }
+
 
         return true;
     }

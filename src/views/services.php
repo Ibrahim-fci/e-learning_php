@@ -28,10 +28,33 @@
                             <div class="menu">
                                 <ul>
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="about-us.php">About Us</a></li>
-                                    <li><a href="services.php">Services</a></li>
-                                    <li><a href="blog.php">Blog</a></li>
-                                    <li><a href="contact-us.php">Contact Us</a></li>
+                                    <li><a href="courses_list.php">Courses</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Profile
+                                        </a>
+                                        <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="services.php">Services</a>
+                                            <a class="dropdown-item" href="profile.php">Profile</a>
+                                            <a class="dropdown-item" href="about-us.php">About Us</a>
+                                            <a class="dropdown-item" href="contact-us.php">Contact Us</a>
+                                            <div class="dropdown-divider"></div>
+
+                                            <?php
+                                            session_start();
+
+                                            if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
+
+                                                echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
+                                            } else {
+                                                echo "<a class='dropdown-item' href='login.php'>Logout</a>";
+                                            }
+
+                                            ?>
+
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -120,22 +143,34 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                        <div class="main-wrapper">
-                            <div class="content text-center">
-                                <div class="icon">
-                                    <i class="fal fa-database"></i>
-                                </div>
-                                <div class="sentence">
-                                    <h3>SOFTWARE</h3>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis molestias
-                                        excepturi fugit, similique
-                                        laborum
-                                        necessitatibus?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    echo "<div class='col-lg-4 col-md-4 col-sm-6 col-12'>";
+                        echo "<div class='main-wrapper p-0' style='min-height: 240px'>";
+                            echo "<div class='content text-center p-0'>";
+                                echo "<div class=' w-100'>";
+                                    echo "<a href='course-details.php?course_id=$course[id]'>";
+                                        echo "<img src='$course[imageurl]' class='card-img-top w-100' alt='...'' style='
+                                            height: 200px'>";
+                                        echo "</a>";
+                                    echo "</div>";
+                                echo "<div class='sentence'>";
+                                    echo "<h3>$course[title]</h3>";
+                                    echo "<p>$course[description]";
+                                        echo "</p>";
+                                    echo "</div>";
+                                if ($_SESSION['role'] != "student" && $_SESSION['user_id'] == $course['teacher_id']) {
+                                echo "<div class='row justify-content-end w-100 my-3'>";
+                                    echo "<button class='btn btn-primary mt-3 mr-1' data-toggle='modal'
+                                        data-target='#updateModal'
+                                        onclick='updateCourse( $course[id], \"$course[title]\", \"$course[description]\", \"$course[imageurl]\", \"$course[price]\", \"$course[duration]\", \"$course[category_id]\")'>update</button>";
+                                    echo "<button class='btn btn-danger mt-3' data-toggle='modal'
+                                        data-target='#deleteModal'
+                                        onclick='deleteCourse($course[id], \"$course[title]\")'>delete</button>";
+                                    echo "</div>";
+                                }
+                                echo "</div>";
+                            echo "</div>";
+                        echo "</div>";
+                    }
 
                     <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                         <div class="main-wrapper">
@@ -294,7 +329,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="last-card">
-                        <p>© 2020 All Rights Reserved by<a href="https://www.smarteyeapps.com">SMARTEYEAPPS</a></p>
+                        <p>© 2020 All Rights Reserved by</p>
                     </div>
                 </div>
             </div>

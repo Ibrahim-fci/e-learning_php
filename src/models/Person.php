@@ -14,6 +14,7 @@ class Person extends DbConnector
     public $email;
     public $password;
     public $image;
+    public $phone;
 
 
     public function __construct($first_name, $last_name, $gender, $address, $email = null, $password = null, $image = null)
