@@ -7,6 +7,13 @@ function createReview()
 
     try {
 
+        // check if user is logged in
+        session_start();
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: ../views/login.php");
+            exit();
+        }
+
         // get form date
         session_start();
         $Ratting = $_POST['rating'];
