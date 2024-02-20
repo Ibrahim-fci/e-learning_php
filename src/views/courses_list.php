@@ -31,7 +31,8 @@ include_once '../models/Courses.php';
     <!-- Course List -->
     <div class="row" id="courseList">
     <?php 
-    $courses = new Course;
+   
+    $courses = new Course('', '', '', '', '', '', '');
     $data = $courses->getAllCourses();
     foreach($data as $course) {
     ?>
@@ -45,7 +46,7 @@ include_once '../models/Courses.php';
             <!-- <p class="card-text">Category: <?php echo $course['category']; ?></p> -->
             <p class="card-text"><?php echo $course['description']; ?></p>
             <p class="card-text">Price: <?php echo $course['price']; ?></p>
-            <a href="course-details.php?id=<?php echo $course['id']?>">more details</a>
+            <a href="course-details.php?course_id=<?php echo $course['id']?>">more details</a>
         </div>
     </div>
     </div>

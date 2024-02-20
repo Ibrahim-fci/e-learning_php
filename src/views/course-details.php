@@ -1,8 +1,26 @@
 <?php
-include_once '../models/Courses.php';
-$courses = new Course;
-$cid=$_GET["id"];
-$data = $courses->getoneCourses($cid);
+include_once __DIR__ . "/../models/Courses.php";
+include_once __DIR__ . "/../models/Teacher.php";
+include_once __DIR__ . "/../models/Category.php";
+
+// Get query parameters
+$queryParams = $_GET;
+$id = $queryParams['course_id'];
+
+$course = new Course('', '', '', '', '', '', '');
+$result = $course->getCourseById($id);
+
+// get teacher by id
+$teacher = new Teacher('', '', '', '', '', '');
+$teacherResult = $teacher->getTeacherById($result['teacher_id']);
+
+
+
+//get category by id
+
+$category = new Category();
+$categoryResult = $category->getCategoryById($result['category_id']);
+
 
 ?>
 <!DOCTYPE html>
@@ -30,7 +48,7 @@ $data = $courses->getoneCourses($cid);
 
 <body>    
 <header>
-        <div class="my-nav">
+<div class="my-nav sub-01">
             <div class="container">
                 <div class="row">
                     <div class="nav-items">
@@ -38,16 +56,35 @@ $data = $courses->getoneCourses($cid);
                             <div class="menu-hamburger"></div>
                         </div>
                         <div class="logo">
-                            <img src="../../assets/images/logo-01.png" />
+                            <img src="../../assets/images/logo-01.png">
                         </div>
                         <div class="menu-items">
                             <div class="menu">
                                 <ul>
                                     <li><a href="index.php">Home</a></li>
-                                    <li><a href="about-us.php">About Us</a></li>
-                                    <li><a href="services.php">Services</a></li>
-                                    <li><a href="login.php">Login</a></li>
-                                    <li><a href="contact-us.php">Contact Us</a></li>
+                                    <li><a href="courses_list.php">Courses</a></li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Profile
+                                        </a>
+                                        <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="services.php">Services</a>
+                                            <a class="dropdown-item" href="profile.php">Profile</a>
+                                            <a class="dropdown-item" href="about-us.php">About Us</a>
+                                            <a class="dropdown-item" href="contact-us.php">Contact Us</a>
+                                            <div class="dropdown-divider"></div>
+                                            <?php
+                                            if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
+
+                                                echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
+                                            } else {
+                                                echo "<a class='dropdown-item' href='login.php'>Logout</a>";
+                                            }
+
+                                            ?>
+
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -65,8 +102,9 @@ $data = $courses->getoneCourses($cid);
 					<div class="hero-heading-upper pt-5 mb-3">Promote Your Online Course <br class="d-md-none">Like A Pro</div>
 					
 					<h1 class="hero-heading mb-5">
-						<span class="brand mb-4 d-block"><span class="text-highlight pr-2">{</span><span class="name"><?php echo $data[0]["title"];?></span><span class="text-highlight pl-2">}</span></span>
-					    <span class="desc d-block"><?php echo $data[0]["instructor"];?></span>
+						<span class="brand mb-4 d-block"><span class="text-highlight pr-2">{</span><span class="name"><?php echo $result['title'] ?></span><span class="text-highlight pl-2">}</span></span>
+					    <span class="desc d-block"><?php echo $teacherResult['first_name'] . $teacherResult['last_name']?></span>
+                        <span class="desc d-block"><?php echo $categoryResult['title']?></span>
 				    </h1>
 					<div class="text-center mb-5">
 						<a href="#section-pricing" class="btn btn-primary btn-lg scrollto">Start Learning Now</a>
@@ -81,7 +119,7 @@ $data = $courses->getoneCourses($cid);
 							</div><!--//col-->
 							<div class="item col-4">
 								<div class="summary-desc mb-1"><i class="icon fas fa-clock me-2"></i>Duration</div>
-								<h4 class="summary-heading"><?php echo $data[0]["duration"];?></h4>
+								<h4 class="summary-heading"><?php echo $result['duration'] ?><span class="desc">Hours</span></h4>
 								
 							</div><!--//col-->
 							<div class="item col-4">
@@ -93,7 +131,7 @@ $data = $courses->getoneCourses($cid);
 					</div><!--//hero-summary-->
 				</div><!--//single-col-max-->
 			</div><!--//container-->
-			<div class="hero-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('<?php echo $data[0]["imageurl"]?>'); background-size: cover; background-position: center;"></div>
+			<div class="hero-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('<?php echo $result['imageurl'];?>'); background-size: cover; background-position: center;"></div>
     </div>
 		</section><!--//hero-section-->
 	</header><!--//header-->
@@ -107,7 +145,7 @@ $data = $courses->getoneCourses($cid);
 		        <div class="container py-5">
 			        <div class="section-col-max mx-auto">
 				        <h3 class="section-title mb-4">What Will You Learn</h3>
-			            <p class="mb-4"><?php echo $data[0]["description"];?></p>
+			            <p class="mb-4"><?php echo $result["description"];?></p>
 			            <div class="text-center mb-3">
 				            <ul class="column-list list-unstyled mx-auto d-inline-block">
 								<li><i class="theme-check-icon fas fa-check me-2"></i>Course highlight lorem ipsum</li>
@@ -148,7 +186,7 @@ $data = $courses->getoneCourses($cid);
 						            <div class="meta">Resources</div>
 					            </div><!--//item-->
 					            <div class="item col-6 col-lg-3 mb-3 mb-lg-0">
-						            <div class="data"><?php echo $data[0]["duration"];?></div>
+						            <div class="data"><?php echo $result["duration"];?></div>
 						            <div class="meta">Hours</div>
 					            </div><!--//item-->
 				            </div><!--//row-->
@@ -759,7 +797,7 @@ $data = $courses->getoneCourses($cid);
 						            
 						            <div class="plan-details p-4">
 							            <div class="plan-desc text-center mb-4">
-								            <div class="plan-price">$<?php echo $data[0]["price"];?></div>
+								            <div class="plan-price">$<?php echo $result["price"];?></div>
 								            <div class="plan-price-desc">Unlimited Access</div>
 							            </div>
 							            <div class="plan-content px-3">

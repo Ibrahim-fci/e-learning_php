@@ -25,7 +25,7 @@ class DbConnector
         /// crete db connection using pdo
         $this->connection = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
         try {
-            echo "Connected successfully";
+            // echo "Connected successfully";
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
