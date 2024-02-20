@@ -63,15 +63,38 @@
 
         <section class="bg-se-02">
             <div class="container">
-            <div class="container mt-5">
-            <!-- Search Bar -->
             <div class="row mb-3">
-            <div class="col">
-                <form action="" method="GET">
-                <input type="text" class="form-control" id="search" name="search" value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>">
-                </form>
-            </div>
-            </div>
+                <div class="col-md-6">
+                  <form action="" method="GET">
+                  <input type="text" class="form-control" id="search" name="search" placeholder="search..." value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>">
+                  </div>
+                        <div class="dropdown ">
+                            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                            Search By catecory
+                            </button>
+                            <div class="dropdown-menu px-2 " aria-labelledby="dropdownMenuOffset">
+                            <?php
+                  if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    include_once '../models/Courses.php';
+                    $courses = new Course;
+                    $data = $courses->getAllCourses();
+                    if($data){
+                       foreach($data as $category){
+                        ?>
+                            <div class="custom-control custom-checkbox ">
+                                <input type="checkbox" class="custom-control-input px-2" id="customCheck1" value = "<?= $category['id'] ;?>">
+                                <label class="custom-control-label" for="customCheck1"><?= $category['category']  ;?></label>
+                            </div>
+                        <?php
+                       }
+                    }
+                    ?>
+                      </div>
+                      </div>
+                  </form>
+            
+                  </div>
+               
                 <div class="row">
                     <div class="heading">
                         <h2>OUR CATEGORY</h2>
@@ -80,13 +103,10 @@
 
                 <div class="row">
                 <?php 
-                if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                  include_once '../models/Courses.php';
                   $word = $_GET['search'];
-                  $courses = new Course;
-                  $data = $courses->search($word);
+                  $search = $courses->search($word);
                     if($data){
-                        foreach($data as $course) {
+                        foreach($search as $course) {
                             ?>
                             <div class="col-lg-4 col-md-4 col-sm-6 col-12">
                                 <div class="main-wrapper">
