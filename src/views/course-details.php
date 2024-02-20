@@ -87,14 +87,14 @@ $reviews = $review->getAllReviews($id);
                                             <a class="dropdown-item" href="contact-us.php">Contact Us</a>
                                             <div class="dropdown-divider"></div>
                                             <?php
-                                            if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
+											if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
 
-                                                echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
-                                            } else {
-                                                echo "<a class='dropdown-item' href='login.php'>Logout</a>";
-                                            }
+												echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
+											} else {
+												echo "<a class='dropdown-item' href='login.php'>Logout</a>";
+											}
 
-                                            ?>
+											?>
 
                                         </div>
                                     </li>
