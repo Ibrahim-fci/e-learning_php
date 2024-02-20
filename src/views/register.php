@@ -3,10 +3,9 @@
 // check if there is a session
 session_start();
 if (isset($_SESSION['user'])) {
-    echo isset($_SESSION['user']);
     // Session exists
-    // header("Location: index.php");
-    // exit();
+    header("Location: index.php");
+    die();
 }
 
 ?>
@@ -84,6 +83,15 @@ if (isset($_SESSION['user'])) {
                                     class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0"
                                     placeholder="Confirm Password" aria-label="Username" aria-describedby="basic-addon1"
                                     name="confirm_password">
+                            </div>
+                            <div class="mb-4 input-group">
+                                <div class="input-group-text  ">
+                                    <select class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0"
+                                        name="role">
+                                        <option value="student">Student</option>
+                                        <option value="teacher">Teacher</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <button type="submit" class="btn btn-lg fw-bold fs-7 btn-success  w-100">Register</button>

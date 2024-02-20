@@ -1,5 +1,6 @@
 <?php
-include_once __DIR__ . "/../models/Courses.php";
+
+include_once __DIR__ . "/../models/Course.php";
 include_once __DIR__ . "/../models/Teacher.php";
 include_once __DIR__ . "/../models/Category.php";
 include_once __DIR__ . "/../models/Review.php";
@@ -59,7 +60,7 @@ $reviews = $review->getAllReviews($id);
 
 <body>
     <header>
-        <div class="my-nav sub-01">``
+        <div class="my-nav sub-01">
             <div class="container">
                 <div class="row">
                     <div class="nav-items">

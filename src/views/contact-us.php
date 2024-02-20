@@ -30,8 +30,7 @@
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="courses_list.php">Courses</a></li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             Profile
                                         </a>
                                         <div class="dropdown-menu bg-dark text-dark" aria-labelledby="navbarDropdown">
@@ -41,16 +40,16 @@
                                             <a class="dropdown-item" href="contact-us.php">Contact Us</a>
                                             <div class="dropdown-divider"></div>
                                             <?php
-                      session_start();
+                                            session_start();
 
-                      if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
+                                            if (isset($_SESSION['role']) && isset($_SESSION['user'])) {
 
-                        echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
-                      } else {
-                        echo "<a class='dropdown-item' href='login.php'>Logout</a>";
-                      }
+                                                echo "<a class='dropdown-item' href='../controllers/logout.controller.php'>Logout</a>";
+                                            } else {
+                                                echo "<a class='dropdown-item' href='login.php'>Logout</a>";
+                                            }
 
-                      ?>
+                                            ?>
 
                                         </div>
                                     </li>
@@ -60,9 +59,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
         </div>
     </header>
     <main>
@@ -122,14 +118,12 @@
                                         <div class="form-group">
                                             <div class="form-sup">
                                                 <div class="cal-01">
-                                                    <input type="name" name="name" id="" class="form-control"
-                                                        placeholder="Enter Your Name" />
+                                                    <input type="name" name="name" id="" class="form-control" placeholder="Enter Your Name" />
                                                     <i class="fal fa-user-tie"></i>
                                                 </div>
 
                                                 <div class="cal-01">
-                                                    <input type="phone" name="phone" id="" class="form-control"
-                                                        placeholder="Phone Number" />
+                                                    <input type="phone" name="phone" id="" class="form-control" placeholder="Phone Number" />
                                                     <i class="fal fa-phone"></i>
                                                 </div>
                                             </div>
@@ -138,21 +132,18 @@
                                         <div class="form-group">
                                             <div class="form-sup">
                                                 <div class="cal-01">
-                                                    <input type="email" name="email" id="" class="form-control"
-                                                        placeholder="Enter Your Email" />
+                                                    <input type="email" name="email" id="" class="form-control" placeholder="Enter Your Email" />
                                                     <i class="fal fa-at"></i>
                                                 </div>
                                                 <div class="cal-01">
-                                                    <input type="text" name="subject" id="" class="form-control"
-                                                        placeholder="Enter Your Subject" />
+                                                    <input type="text" name="subject" id="" class="form-control" placeholder="Enter Your Subject" />
                                                     <i class="fal fa-envelope-open-text"></i>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="ca-ool">
-                                            <textarea name="text" cols="80" rows="6" class="form-control"
-                                                placeholder="Message"></textarea>
+                                            <textarea name="text" cols="80" rows="6" class="form-control" placeholder="Message"></textarea>
                                         </div>
                                     </div>
                                 </form>
@@ -164,9 +155,7 @@
         </section>
 
         <section class="mab-01">
-            <iframe style="width: 100%"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d249759.19784092825!2d79.10145254589841!3d12.009924873581818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1448883859107"
-                height="450" frameborder="0" allowfullscreen=""></iframe>
+            <iframe style="width: 100%" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d249759.19784092825!2d79.10145254589841!3d12.009924873581818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1448883859107" height="450" frameborder="0" allowfullscreen=""></iframe>
         </section>
     </main>
 
@@ -235,29 +224,18 @@
     </footer>
 
     <div class="end-footer">
-        <<<<<<< HEAD <div class="container">
+        <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="last-card">
                         <p>
-                            © 2020 All Rights Reserved by<a href="https://www.smarteyeapps.com">SMARTEYEAPPS</a>
+                            © 2020 All Rights Reserved by
                         </p>
-                        =======
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="last-card">
-                                        <p>
-                                            © 2020 All Rights Reserved by
-                                        </p>
-                                    </div>
-                                </div>
-                                >>>>>>> Ibrahim
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 
 <script src="../../assets/js/jquery-3.2.1.min.js"></script>
