@@ -121,8 +121,7 @@ $reviews = $review->getAllReviews($id);
                     <span class="brand mb-4 d-block"><span class="text-highlight pr-2">{</span><span
                             class="name"><?php echo $result['title'] ?></span><span
                             class="text-highlight pl-2">}</span></span>
-                    <span
-                        class="desc d-block"><?php echo $teacherResult['first_name'] . $teacherResult['last_name'] ?></span>
+                  
                     <span class="desc d-block"><?php echo $categoryResult['title'] ?></span>
                 </h1>
                 <div class="text-center mb-5">
@@ -131,25 +130,31 @@ $reviews = $review->getAllReviews($id);
 
                 <div class="hero-summary">
                     <div class="row">
-                        <div class="item col-4">
+                        <div class="item col-3">
                             <div class="summary-desc mb-1"><i class="icon fas fa-video me-2"></i>Content</div>
                             <h4 class="summary-heading">80+ <span class="desc">Videos</span></h4>
 
                         </div>
                         <!--//col-->
-                        <div class="item col-4">
+                        <div class="item col-3">
                             <div class="summary-desc mb-1"><i class="icon fas fa-clock me-2"></i>Duration</div>
                             <h4 class="summary-heading"><?php echo $result['duration'] ?><span class="desc">Hours</span>
                             </h4>
 
                         </div>
                         <!--//col-->
-                        <div class="item col-4">
+                        <div class="item col-3">
                             <div class="summary-desc mb-1"><i class="icon fas fa-user-circle me-2"></i>Access</div>
                             <h4 class="summary-heading">Lifetime</h4>
 
                         </div>
                         <!--//col-->
+                        <div class="item col-3">
+							
+								<div class="summary-desc mb-1"><i class="icon fas fa-money-bill-wave me-2"></i>Price</div>
+								<h4 class="summary-heading">$<?php echo $result["price"];?></h4>
+								
+							</div><!--//col-->
                     </div>
                     <!--//row-->
                 </div>
@@ -730,7 +735,7 @@ $reviews = $review->getAllReviews($id);
                     <!--//module-accordion-->
 
                     <div class="text-center mt-5">
-                        <a class="btn btn-primary scrollto" href="#section-pricing">Enrol Now</a>
+                        <a class="btn btn-primary scrollto" href="#" id="section-pricing">Enrol Now</a>
                     </div>
 
 
@@ -761,19 +766,15 @@ $reviews = $review->getAllReviews($id);
                     <div class="row over-section-bg">
                         <div class="col-12 col-lg-3">
                             <div class="tutor-img-holder mb-5 mb-lg-0 text-center">
-                                <img class="tutor-profile img-fluid rounded" src="assets/images/tutor.jpg" alt="">
+                                <img class="tutor-profile img-fluid rounded" src="<?php echo $teacherResult['image'] ?>" alt="">
                             </div>
                             <!--//tutor-img-holder-->
                         </div>
                         <!--//col-->
                         <div class="col-12 col-lg-9">
                             <div class="pl-lg-4">
-                                <h3 class="section-title mb-4 text-white text-lg-start">Meet The Tutor</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus at hendrerit augue,
-                                    eu pellentesque dolor. Praesent vel congue velit. Fusce lorem nisl, condimentum in
-                                    pulvinar et, laoreet vel felis. Duis tincidunt ex sed risus posuere, quis venenatis
-                                    quam tincidunt. Quisque arcu lacus, mollis volutpat turpis sit amet, interdum
-                                    eleifend sem.</p>
+                                <h3 class="section-title mb-4 text-white text-lg-start"><?php echo $teacherResult['first_name'] . " ".$teacherResult['last_name'] ?></h3>
+                                
                                 <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
                                     Curae; Etiam auctor leo at mi dignissim, tempor porttitor leo vehicula.</p>
                                 <div class="text-center text-lg-start">
@@ -900,260 +901,11 @@ $reviews = $review->getAllReviews($id);
         </div>
         <!--//section-reviews-->
 
-        <div id="section-pricing" class="section-pricing py-5">
-            <div class="container">
-                <div class="single-col-max mx-auto">
-                    <h3 class="text-center mb-5">Join This Course</h3>
-                    <div class="pricing-plan">
-                        <div class="row">
-                            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-                                <div class="plan-item rounded">
-                                    <div class="plan-header ">
-                                        <h4 class="plan-heading rounded-top p-3  btn-primary">Free</h4>
-                                    </div>
-                                    <!--//plan-header-->
-
-                                    <div class="plan-details p-4">
-                                        <div class="plan-desc text-center mb-4">
-                                            <div class="plan-price">$0</div>
-                                            <div class="plan-price-desc">Limited Access</div>
-                                        </div>
-                                        <div class="plan-content px-3">
-                                            <div class="plan-content-intro">Join free and you'll get:</div>
-                                            <ul class="plan-content-list list-unstyled">
-                                                <li><i class="theme-check-icon fas fa-check me-2"></i>Access to basic
-                                                    level videos</li>
-                                                <li><i class="theme-check-icon fas fa-check me-2"></i>3 bonus resources
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                        <!--//plan-content-->
-
-                                    </div>
-                                    <!--//plan-content-->
-                                    <div class="plan-cta text-center px-4">
-                                        <a class="btn btn-ghost btn-block" href="">Join Free</a>
-                                    </div>
-                                </div>
-                                <!--//plan-item-->
-                            </div>
-                            <!--//col-->
-                            <div class="col-12 col-lg-6 mb-4 mb-lg-0">
-                                <div class="plan-item rounded">
-                                    <div class="plan-header">
-                                        <h4 class="plan-heading rounded-top p-3 btn-primary">Premium</h4>
-                                    </div>
-                                    <!--//plan-header-->
-
-                                    <div class="plan-details p-4">
-                                        <div class="plan-desc text-center mb-4">
-                                            <div class="plan-price">$<?php echo $result["price"]; ?></div>
-                                            <div class="plan-price-desc">Unlimited Access</div>
-                                        </div>
-                                        <div class="plan-content px-3">
-                                            <div class="plan-content-intro">Join free and you'll get:</div>
-                                            <ul class="plan-content-list list-unstyled">
-                                                <li><i class="theme-check-icon fas fa-check me-2"></i>Access to all 80+
-                                                    videos</li>
-                                                <li><i class="theme-check-icon fas fa-check me-2"></i>Access to all 40+
-                                                    resources</li>
-                                                <li><i class="theme-check-icon fas fa-check me-2"></i>Access to projects
-                                                    source code</li>
-
-                                                <li><i class="theme-check-icon fas fa-check me-2"></i>Exclusive support
-                                                    forum</li>
-                                                <li><i class="theme-check-icon fas fa-check me-2"></i>Free updates</li>
-
-                                                <li><i class="theme-check-icon fas fa-check me-2"></i>Digital
-                                                    certificate</li>
-                                            </ul>
-
-                                        </div>
-                                        <!--//plan-content-->
-
-                                    </div>
-                                    <!--//plan-content-->
-                                    <div class="plan-cta text-center px-4">
-                                        <a class="btn btn-primary btn-block"
-                                            href="https://themes.3rdwavemedia.com/bootstrap-templates/product/devcourse-bootstrap-4-course-landing-page-template/"
-                                            target="_blank">Enrol Now</a>
-                                    </div>
-                                </div>
-                                <!--//plan-item-->
-                            </div>
-                            <!--//col-->
-                        </div>
-                        <!--//row-->
-                    </div>
-                    <!--//pricing-plan-->
-                </div>
-            </div>
-            <!--//container-->
-        </div>
-        <!--//section-pricing-->
+        
 
 
-        <div id="section-faq" class="section-faq my-lg-5">
-            <div class="container">
-                <div class="container-inner p-5 theme-bg-light rounded">
-                    <div class="row">
-                        <div class="col-12 col-lg-3">
-                            <h3 class="section-title text-start mb-4">FAQ</h3>
-                            <div class="intro mb-5 pr-lg-3">Can't find the answer you're looking for? Feel free to <a
-                                    class="theme-link" href="#">get in touch</a>.</div>
-                        </div>
-                        <div class="col-12 col-lg-9">
-                            <div class="faq-items pl-lg-3">
-                                <div class="item">
-                                    <h4 class="faq-q mb-2"><i class="far fa-question-circle me-2 text-primary"></i>What
-                                        lorem ipsum dolor sit amet?</h4>
-                                    <div class="faq-a">
-                                        <p>Sed venenatis porta ante, nec accumsan leo suscipit ac. Praesent ultricies
-                                            tortor nisi, eu convallis ex lacinia ac. Praesent vel risus eu ligula
-                                            ullamcorper condimentum eu ac leo. Praesent leo odio <a href="#">link
-                                                example</a> interdum vitae mi vitae, maximus porta lectus. Maecenas
-                                            venenatis, felis quis rutrum luctus, tortor turpis maximus lacus, at
-                                            scelerisque nisl metus nec augue. </p>
-                                    </div>
-                                </div>
-                                <!--//item-->
-                                <div class="item">
-                                    <h4 class="faq-q mb-2"><i class="far fa-question-circle me-2 text-primary"></i>How
-                                        to lorem ipsum dolor sit amet?</h4>
-                                    <div class="faq-a">
-                                        <p>Donec tincidunt porttitor dictum. Cras laoreet ipsum vitae massa suscipit, at
-                                            pretium justo molestie. Duis gravida vitae dui vel posuere. Maecenas
-                                            pharetra, odio nec interdum efficitur, eros magna bibendum tortor, at
-                                            pellentesque nunc quam eu diam. </p>
-                                    </div>
-                                </div>
-                                <!--//item-->
-                                <div class="item">
-                                    <h4 class="faq-q mb-2"><i class="far fa-question-circle me-2 text-primary"></i>Does
-                                        lorem ipsum dolor sit amet?</h4>
-                                    <div class="faq-a">
-                                        <p>Maecenas felis mauris, pharetra at congue sed, semper et orci. Suspendisse
-                                            maximus viverra tellus vel dictum. Cras lacinia lectus magna, facilisis
-                                            congue lacus tristique non. </p>
-                                    </div>
-                                </div>
-                                <!--//item-->
-                                <div class="item">
-                                    <h4 class="faq-q mb-2"><i class="far fa-question-circle me-2 text-primary"></i>When
-                                        do you lorem ipsum dolor sit amet?</h4>
-                                    <div class="faq-a">
-                                        <p>Suspendisse gravida gravida orci ut egestas. In in libero faucibus tortor
-                                            blandit iaculis a fermentum lectus. Proin dictum lacus id fringilla
-                                            interdum. </p>
-                                    </div>
-                                </div>
-                                <!--//item-->
-                                <div class="item">
-                                    <h4 class="faq-q mb-2"><i class="far fa-question-circle me-2 text-primary"></i>Can I
-                                        lorem ipsum dolor sit amet?</h4>
-                                    <div class="faq-a">
-                                        <p>Nam feugiat quam nec ex consectetur volutpat. Phasellus urna diam, finibus
-                                            non enim id, placerat facilisis orci. Maecenas tristique orci sit amet sem
-                                            suscipit, vitae auctor lectus pellentesque. </p>
-                                    </div>
-                                </div>
-                                <!--//item-->
-                                <div class="item">
-                                    <h4 class="faq-q mb-2"><i class="far fa-question-circle me-2 text-primary"></i>Does
-                                        lorem ipsum dolor sit amet?</h4>
-                                    <div class="faq-a">
-                                        <p>Nam feugiat quam nec ex consectetur volutpat. Phasellus urna diam, finibus
-                                            non enim id, placerat facilisis orci. Maecenas tristique orci sit amet sem
-                                            suscipit, vitae auctor lectus pellentesque. </p>
-                                    </div>
-                                </div>
-                                <!--//item-->
-                            </div>
-                            <!--//faq-items-->
-                        </div>
-                    </div>
-                    <!--//row-->
-                </div>
-                <!--//container-inner-->
-            </div>
-            <!--//container-->
-        </div>
-        <!--//section-faq-->
 
-        <div id="section-more" class="section section-related py-5">
-            <div class="container">
-                <h3 class="section-title mb-5">More Courses You May Like</h3>
-                <div class="related-items row">
-                    <div class="col-12 col-lg-4 mb-4 mb-lg-0">
-                        <div class="item">
-                            <div class="item-thumb">
-                                <img class="img-fluid rounded-top" src="assets/images/course-1.jpg" alt="">
-                            </div>
-                            <!--//thumb-holder-->
-                            <div class="item-desc p-4 rounded-bottom">
-                                <h4 class="title mb-3"><a href="#">Course Title Lorem Ipsum</a></h4>
-                                <div class="summary mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam ac aliquet felis. Suspendisse dignissim neque nibh, vitae vulputate elit
-                                    luctus accumsan. </div>
-                                <div class="text-center">
-                                    <a class="btn btn-ghost btn-block" href="#">Find out more</a>
-                                </div>
-                            </div>
-                            <!--//desc-->
-
-                        </div>
-                        <!--//item-->
-                    </div>
-                    <!--//col-->
-                    <div class="col-12 col-lg-4 mb-4 mb-lg-0">
-                        <div class="item">
-                            <div class="item-thumb">
-                                <img class="img-fluid rounded-top" src="assets/images/course-2.jpg" alt="">
-                            </div>
-                            <!--//thumb-holder-->
-                            <div class="item-desc p-4 rounded-bottom">
-                                <h4 class="title mb-3"><a href="#">Course Title Lorem Ipsum</a></h4>
-                                <div class="summary mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam ac aliquet felis. Suspendisse dignissim neque nibh, vitae vulputate elit
-                                    luctus accumsan. </div>
-                                <div class="text-center">
-                                    <a class="btn btn-ghost btn-block" href="#">Find out more</a>
-                                </div>
-                            </div>
-                            <!--//desc-->
-
-                        </div>
-                        <!--//item-->
-                    </div>
-                    <!--//col-->
-                    <div class="col-12 col-lg-4">
-                        <div class="item">
-                            <div class="item-thumb">
-                                <img class="img-fluid rounded-top" src="assets/images/course-3.jpg" alt="">
-                            </div>
-                            <!--//thumb-holder-->
-                            <div class="item-desc p-4 rounded-bottom">
-                                <h4 class="title mb-3"><a href="#">Course Title Lorem Ipsum</a></h4>
-                                <div class="summary mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Nullam ac aliquet felis. Suspendisse dignissim neque nibh, vitae vulputate elit
-                                    luctus accumsan. </div>
-                                <div class="text-center">
-                                    <a class="btn btn-ghost btn-block" href="#">Find out more</a>
-                                </div>
-                            </div>
-                            <!--//desc-->
-
-                        </div>
-                        <!--//item-->
-                    </div>
-                    <!--//col-->
-                </div>
-                <!--//row-->
-            </div>
-            <!--//container-->
-        </div>
-        <!--//section-8-->
+       
 
 
 
@@ -1178,26 +930,7 @@ $reviews = $review->getAllReviews($id);
         </footer>
         <!--//footer-->
 
-        <!-- Video Modal -->
-        <div class="modal modal-video" id="modal-video" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
-                    <div class="modal-body">
-                        <div class="ratio ratio-16x9">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/qz0aGYrrlhU"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <!--//modal-body-->
-                </div>
-                <!--//modal-content-->
-            </div>
-            <!--//modal-dialog-->
-        </div>
-        <!--//modal-->
+       
 
 
 

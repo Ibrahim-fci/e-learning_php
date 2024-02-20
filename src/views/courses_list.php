@@ -31,7 +31,7 @@ include_once '../models/Courses.php';
         <!-- Course List -->
         <div class="row" id="courseList">
             <?php 
-    $courses = new Course;
+    $courses = new Course("","","","","","","");
     $data = $courses->getAllCourses();
     foreach($data as $course) {
     ?>
