@@ -48,10 +48,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="heading-wrapper">
-                            <h3>Services</h3>
+                            <h3>Courses</h3>
                             <ol>
                                 <li>Hmoe<i class="far fa-angle-double-right"></i></li>
-                                <li>Services</li>
+                                <li>Courses</li>
                             </ol>
                         </div>
                     </div>
@@ -61,16 +61,31 @@
 
         <!-- ============bg-se-02  Section  Start============ -->
 
-        <section class="bg-se-02">
+         <section class="bg-se-02">
             <div class="container">
             <div class="col-md-6">
-                  <form action="" method="GET">
-                  <input type="text" class="form-control" id="search" name="search" placeholder="search..." value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>">
-                  </form>
+            <form class="row g-3" action="" method="GET">
+    <div class="col-auto">
+        <input type="text" class="form-control" id="search" name="search" placeholder="Search..." value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>">
+    </div>
+    <!-- <div class="col-auto">
+        <select class="form-select" name="category" value="
+      
+        ">
+            <option value="">All Categories</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Computer Science">Computer Science</option>
+            <option value="Business">Business</option>
+        </select>
+    </div> -->
+    <div class="col-auto">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </div>
+</form>
             </div>
                 <div class="row">
                     <div class="heading">
-                        <h2>OUR CATEGORY</h2>
+                        <h2>OUR Coures</h2>
                     </div>
                 </div>
 
@@ -79,35 +94,29 @@
                 if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     include_once '../models/Courses_list.php';
                     $courses = new Course;
-                  $word = $_GET['search'];
-                  $search = $courses->search($word);
-                    if($search){
-                        foreach($search as $course) {
-                            ?>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                                <div class="main-wrapper">
-                                    <div class="content text-center">
-                                        <div class="icon">
-                                            <i class="fal fa-code"></i>
-                                        </div>
-                                        <div class="sentence">
-                                            <h3><?php echo $course['title']; ?></h3>
-                                            <p>Instructor: <?php echo $course['firstname']; ?></p>
-                                            <p>Category: <?php echo $course['title']; ?></p>
-                                            <p><?php echo $course['description']; ?></p>
-                                            <p>Price: <?php echo $course['price']; ?></p>
-                                          <?php echo "<a href='#?id=$course[id]' >show details</a>"; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                      }
-                      
+                  $word = $_GET['search'] ;
+                  $search = $courses->search($word );
+                  if($search) {
+                    foreach($search as $course) {
+                        echo "<div class='col-lg-4 col-md-4 col-sm-6 col-12'>";
+                        echo "<div class='main-wrapper'>";
+                        echo "<div class='content text-center'>";
+                        echo "<div class='sentence'>";
+                        echo "<img src='{$course['imageurl']}'>";
+                        echo "<h3>{$course['title']}</h3>";
+                        echo "<p>Instructor: {$course['firstname']}</p>";
+                        echo "<p>Category: {$course['category']}</p>";
+                        echo "<p>{$course['description']}</p>";
+                        echo "<p>Price: {$course['price']}</p>";
+                        echo "<a href='#?id={$course['id']}' >Show Details</a>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
                     }
-                    else{
-                        echo "no data founded";
-                    }
+                } else {
+                    echo "No data found";
+                }
                     }
                     
                 ?>      
@@ -115,7 +124,7 @@
             </div>
         </section>
 
-
+ 
 
     </main>
 

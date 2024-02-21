@@ -15,12 +15,6 @@ class Course{
         return $this->connection->query($sql);
     }
     
-    // public function search($keyword) {
-    //     $sql = "SELECT * FROM Course  WHERE CONCAT(title,category,instructor,price) LIKE '%$keyword%'";
-    //     $result = $this->runDML($sql);
-    //     $data=$result->fetchAll(PDO::FETCH_ASSOC);
-    //     return $data;
-    // } 
     public function search($keyword) {
         $keyword = trim($keyword);
         $sql = "SELECT Course.*, Category.title AS category_name, Teacher.first_name AS instructor_name
@@ -37,7 +31,17 @@ class Course{
         
         return $data;
     }
+    // public function searchCourses($keyword) {
+    //     $keyword = trim($keyword);
+    //     $sql = "SELECT Course.*, Category.title AS category_name
+    //     FROM Course
+    //     LEFT JOIN Category ON Course.category_id = Category.id
+    //     WHERE Category.title LIKE '%$keyword%'";
 
+        
+    //     return $data;
+    // }
+    
     public function getAllCourses(){
         $stmt="SELECT * FROM Course";
         $result=$this->runDML($stmt); 
