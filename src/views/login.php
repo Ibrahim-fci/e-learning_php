@@ -2,7 +2,6 @@
 
 // check if there is a session
 session_start();
-echo isset($_SESSION['user']);
 if (isset($_SESSION['user'])) {
     // Session exists
     header("Location: index.php");
@@ -46,6 +45,20 @@ if (isset($_SESSION['user'])) {
                     <div class="row d-flex vh-100">
                         <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
                             <h4 class="text-center fw-bolder mb-4 fs-2">Login</h4>
+
+                            <?php
+                            session_start();
+                            if (isset($_SESSION['login_errors'])) {
+                                foreach ($_SESSION['login_errors'] as $error) {
+                                    echo "<p class='alert alert-danger'>$error</p>";
+                                }
+                            }
+
+                            ?>
+
+
+
+
                             <div class="input-group mb-4">
                                 <span class="input-group-text border-end-0 inbg" id="basic-addon1"><i
                                         class="bi bi-person"></i></span>
@@ -61,6 +74,15 @@ if (isset($_SESSION['user'])) {
                                     class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0"
                                     placeholder="Enter Password" aria-label="Username" aria-describedby="basic-addon1"
                                     name="password">
+                            </div>
+                            <div class="mb-4 input-group">
+                                <div class="input-group-text  ">
+                                    <select class="form-control ps-2 fs-7 border-start-0 form-control-lg inbg mb-0"
+                                        name="role">
+                                        <option value="student">Student</option>
+                                        <option value="teacher">Teacher</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <button class="btn btn-lg fw-bold fs-7 btn-success  w-100">Login</button>
