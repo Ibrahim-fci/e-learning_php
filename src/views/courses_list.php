@@ -105,11 +105,11 @@
                         echo "<div class='sentence'>";
                         echo "<img src='{$course['imageurl']}'>";
                         echo "<h3>{$course['title']}</h3>";
-                        echo "<p>Instructor: {$course['firstname']}</p>";
-                        echo "<p>Category: {$course['category']}</p>";
+                        echo "<p> {$course['instructor_name']}</p>";
+                        echo "<p> {$course['category_name']}</p>";
                         echo "<p>{$course['description']}</p>";
                         echo "<p>Price: {$course['price']}</p>";
-                        echo "<a href='#?id={$course['id']}' >Show Details</a>";
+                        echo "<a href='course-details.php?course_id={$course['id']}' >Show Details</a>";
                         echo "</div>";
                         echo "</div>";
                         echo "</div>";

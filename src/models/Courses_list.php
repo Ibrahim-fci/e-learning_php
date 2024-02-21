@@ -5,7 +5,7 @@ class Course{
     public function __construct()
     {
         try{
-            $this->connection=new PDO("mysql:host=localhost;dbname=e-learning;charset=utf8","root","");
+            $this->connection=new PDO("mysql:host=localhost;dbname=e_learning;charset=utf8","root","");
         }catch(Exception $e){
             $e->getMessage();
         }
@@ -17,14 +17,14 @@ class Course{
     
     public function search($keyword) {
         $keyword = trim($keyword);
-        $sql = "SELECT Course.*, Category.title AS category_name, Teacher.first_name AS instructor_name
-                FROM Course
-                LEFT JOIN Category ON Course.category_id = Category.id
-                LEFT JOIN Teacher ON Course.teacher_id = Teacher.teacher_id
-                WHERE Course.title LIKE '%$keyword%' 
-                   OR Category.title LIKE '%$keyword%' 
-                   OR Teacher.first_name LIKE '%$keyword%' 
-                   OR Course.price LIKE '%$keyword%'";
+        $sql = "SELECT course.*, category.title AS category_name, teacher.first_name AS instructor_name
+                FROM course
+                LEFT JOIN category ON course.category_id = category.id
+                LEFT JOIN teacher ON course.teacher_id = teacher.teacher_id
+                WHERE course.title LIKE '%$keyword%' 
+                   OR category.title LIKE '%$keyword%' 
+                   OR teacher.first_name LIKE '%$keyword%' 
+                   OR course.price LIKE '%$keyword%'";
         
         $result = $this->runDML($sql);
         $data = $result->fetchAll(PDO::FETCH_ASSOC);

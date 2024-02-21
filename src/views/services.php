@@ -1,6 +1,25 @@
+<?php
+include_once __DIR__ . "/../models/Category.php";
+include_once __DIR__ . "/../models/Course.php";
+
+// get all categories
+$category = new Category();
+$categories = $category->getAllCategories();
+
+// get all courses
+$course = new Course('', '', '', '', '', '', '');
+$courses = $course->getAllCourses();
+
+session_start();
+$userRole = $_SESSION['role'];
+
+?>
+
+
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -128,78 +147,53 @@
             ?>
 
             <div class="container">
-            <div class="row mb-3">
-                <div class="col-md-6">
-                  <form action="" method="GET">
-                  <input type="text" class="form-control" id="search" name="search" placeholder="search..." value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>">
-                  </div>
-                        <div class="dropdown ">
-                            <button type="button" class="btn btn-primary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                            Search By catecory
-                            </button>
-                            <div class="dropdown-menu px-2 " aria-labelledby="dropdownMenuOffset">
-                            <?php
-                  if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                    include_once '../models/Courses.php';
-                    $courses = new Course;
-                    $data = $courses->getAllCourses();
-                    if($data){
-                       foreach($data as $category){
-                        ?>
-                            <div class="custom-control custom-checkbox ">
-                                <input type="checkbox" class="custom-control-input px-2" id="customCheck1" value = "<?= $category['id'] ;?>">
-                                <label class="custom-control-label" for="customCheck1"><?= $category['category']  ;?></label>
-                            </div>
-                        <?php
-                       }
-                    }
-                    ?>
-                      </div>
-                      </div>
-                  </form>
-            
-                  </div>
-               
+                <div class="input-group mb-5">
+                    <input type="text" class="form-control search-input" placeholder="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="heading">
-                        <h2>OUR CATEGORY</h2>
+                        <h2>POPULAR Courses</h2>
                     </div>
                 </div>
 
                 <div class="row">
-                <?php 
-                  $word = $_GET['search'];
-                  $search = $courses->search($word);
-                    if($data){
-                        foreach($search as $course) {
-                            ?>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-                                <div class="main-wrapper">
-                                    <div class="content text-center">
-                                        <div class="icon">
-                                            <i class="fal fa-code"></i>
-                                        </div>
-                                        <div class="sentence">
-                                            <h3><?php echo $course['title']; ?></h3>
-                                            <p>Instructor: <?php echo $course['instructor']; ?></p>
-                                            <p>Category: <?php echo $course['category']; ?></p>
-                                            <p><?php echo $course['description']; ?></p>
-                                            <p>Price: <?php echo $course['price']; ?></p>
-                                          <?php echo "<a href='#?id=$course[id]' >show details</a>"; ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                      }
-                      
+
+                    <?php
+
+                    foreach ($courses as $course) {
+
+                        echo "<div class='col-lg-4 col-md-4 col-sm-6 col-12' >";
+                        echo "<div class='main-wrapper p-0' style='min-height: 240px'>";
+                        echo "<div class='content text-center p-0'>";
+                        echo "<div class=' w-100' >";
+                        echo "<a href='course-details.php?course_id=$course[id]'>";
+                        echo "<img src='$course[imageurl]' class='card-img-top w-100' alt='...'' style='height: 200px'>";
+                        echo "</a>";
+                        echo "</div>";
+                        echo "<div class='sentence'>";
+                        echo "<h3>$course[title]</h3>";
+                        echo "<p>$course[description]";
+                        echo "</p>";
+                        echo "</div>";
+                        if ($_SESSION['role'] != "student" && $_SESSION['user_id'] == $course['teacher_id']) {
+                            echo "<div class='row justify-content-end w-100 my-3'>";
+                            echo "<button class='btn btn-primary mt-3 mr-1' data-toggle='modal' data-target='#updateModal' onclick='updateCourse( $course[id], \"$course[title]\", \"$course[description]\", \"$course[imageurl]\", \"$course[price]\", \"$course[duration]\", \"$course[category_id]\")'>update</button>";
+                            echo "<button class='btn btn-danger mt-3'   data-toggle='modal' data-target='#deleteModal'  onclick='deleteCourse($course[id], \"$course[title]\")'>delete</button>";
+                            echo "</div>";
+                        }
+                        echo "</div>";
+                        echo "</div>";
+                        echo "</div>";
                     }
-                    else{
-                        echo "no data founded";
-                    }
-                    }
-                    
-                ?>      
+
+                    ?>
+
+
                 </div>
             </div>
         </section>
@@ -389,6 +383,7 @@
                 </div>
             </div>
         </div>
+
 
 
 
