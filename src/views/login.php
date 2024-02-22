@@ -47,12 +47,12 @@ if (isset($_SESSION['user'])) {
                             <h4 class="text-center fw-bolder mb-4 fs-2">Login</h4>
 
                             <?php
-                            session_start();
-                            if (isset($_SESSION['login_errors'])) {
-                                foreach ($_SESSION['login_errors'] as $error) {
-                                    echo "<p class='alert alert-danger'>$error</p>";
-                                }
-                            }
+                            // session_start();
+                            // if (isset($_SESSION['login_errors'])) {
+                            //     foreach ($_SESSION['login_errors'] as $error) {
+                            //         echo "<p class='alert alert-danger'>$error</p>";
+                            //     }
+                            // }
 
                             ?>
 

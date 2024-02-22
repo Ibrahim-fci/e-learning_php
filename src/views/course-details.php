@@ -163,9 +163,9 @@ $reviews = $review->getAllReviews($id);
             <!--//single-col-max-->
         </div>
         <!--//container-->
-        <div class="hero-bg"
+        <!-- <div class="hero-bg"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('<?php echo $result['imageurl']; ?>'); background-size: cover; background-position: center;">
-        </div>
+        </div> -->
         </div>
     </section>
     <!--//hero-section-->
